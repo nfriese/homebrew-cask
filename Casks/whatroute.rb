@@ -1,11 +1,20 @@
-cask :v1 => 'whatroute' do
-  version '1.13.1'
-  sha256 '34a37acea1285b6a2c28bc18b81974b1214fbbf019c0ef9fad32844bb780cc56'
+cask 'whatroute' do
+  version '2.0.18'
+  sha256 'f3711fd45c0257267ac7439962260b9205304b7de70fa7efe12c8359153a099c'
 
-  url "http://www.whatroute.net/software/whatroute-#{version}.dmg"
+  url "https://downloads.whatroute.net/software/whatroute-#{version}.zip"
   name 'WhatRoute'
-  homepage 'http://www.whatroute.net'
-  license :gratis
+  homepage 'https://www.whatroute.net/'
+
+  depends_on macos: '>= :yosemite'
 
   app 'WhatRoute.app'
+
+  zap delete: [
+                '/Library/LaunchDaemons/net.whatroute.whatroute2helper.plist',
+                '/Library/PrivilegedHelperTools/net.whatroute.whatroute2helper',
+                '~/Library/Caches/net.whatroute.whatroute2',
+                '~/Library/Logs/net.whatroute.whatroute2',
+                '~/Library/Preferences/net.whatroute.whatroute2.plist',
+              ]
 end

@@ -1,23 +1,23 @@
-cask :v1 => 'quotefix' do
-  version '2.7.1'
-  sha256 'a6c5efa2fe7060ad6a71e985ec62db71c4a2550a84f41ce6a08c8a4484a5429f'
+cask 'quotefix' do
+  version '2.7.4,120155'
+  sha256 'eb2a80431c0c53547e811bef7bcb9256184abd8415c31787aa4bd0fda3b4a242'
 
-  url "https://github.com/robertklep/quotefixformac/releases/download/v#{version}/QuoteFix-v#{version}.zip"
-  appcast 'https://github.com/robertklep/quotefixformac/releases.atom'
+  url "https://github.com/robertklep/quotefixformac/files/#{version.after_comma}/QuoteFix-#{version.before_comma}.zip"
+  appcast 'https://github.com/robertklep/quotefixformac/releases.atom',
+          checkpoint: 'f95a33fb61ed287c57945f5c64258674d372a49411b5b47048dad20a284ca316'
   name 'QuoteFix'
   homepage 'https://github.com/robertklep/quotefixformac'
-  license :oss
 
   stage_only true
 
   postflight do
-    system 'defaults', 'write', 'com.apple.mail', 'EnableBundles', '-bool', 'true'
-    system 'defaults', 'write', 'com.apple.mail', 'BundleCompatibilityVersion', '-string', '3'
-    system 'mkdir', '-p',  File.expand_path('~/Library/Mail/Bundles')
-    system 'cp', '-r',  File.join(staged_path, 'QuoteFix.mailbundle'), File.expand_path('~/Library/Mail/Bundles')
+    system_command '/usr/bin/defaults', args: ['write', 'com.apple.mail', 'EnableBundles', '-bool', 'true']
+    system_command '/usr/bin/defaults', args: ['write', 'com.apple.mail', 'BundleCompatibilityVersion', '-string', '3']
+    system_command '/bin/mkdir', args: ['-p', File.expand_path('~/Library/Mail/Bundles')]
+    system_command '/bin/cp', args: ['-r', File.join(staged_path, 'QuoteFix.mailbundle'), File.expand_path('~/Library/Mail/Bundles')]
   end
 
-  uninstall :delete => File.expand_path('~/Library/Mail/Bundles/QuoteFix.mailbundle')
+  uninstall delete: File.expand_path('~/Library/Mail/Bundles/QuoteFix.mailbundle')
 
   caveats 'You may need to restart Mail.app before you can use QuoteFix'
 end

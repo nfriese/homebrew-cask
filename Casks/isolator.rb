@@ -1,13 +1,12 @@
-cask :v1 => 'isolator' do
-  version '4.9beta'
-  sha256 '0f77f1165223196af77df9565f0573bce4d42ac6c327c73bb01c6eaa74081d6c'
+cask 'isolator' do
+  version '4.99beta'
+  sha256 '8ab9344efd503606c88dbd5a139e932f37d25ec9b8d7c574a6af9f6cf1d9bcaf'
 
-  url "http://willmore.eu/software/download/Isolator-#{version}.dmg"
-  appcast 'http://willmore.eu/software/isolator/releases.xml',
-          :sha256 => '7bcafa48189e21cb571c04ce70e5f235baf354c3a7c6b891b9ace3507acbc0f8'
+  url "https://willmore.eu/software/download/Isolator-#{version}.dmg"
+  appcast 'https://willmore.eu/software/isolator/allversions.xml',
+          checkpoint: '4ae563966d0ad716442b79d477d901597a4230774e185a66d73ce9f504530887'
   name 'Isolator'
-  homepage 'http://willmore.eu/software/isolator/'
-  license :gratis
+  homepage 'https://www.willmore.eu/software/isolator/'
 
   app 'Isolator.app'
 end

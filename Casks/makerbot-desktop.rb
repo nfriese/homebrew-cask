@@ -1,14 +1,12 @@
-cask :v1 => 'makerbot-desktop' do
-  version '3.7.0.148'
-  sha256 '1012556c76df6220640606bb1041a6cf6cc28975ffba6b75b653228512b9da91'
+cask 'makerbot-desktop' do
+  version '3.10.0.1725'
+  sha256 '9579eeb71daec6cf7e13bbc69f0bc7a954ab65ff9ee82e0fd03121226a21629e'
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "http://s3.amazonaws.com/downloads-makerbot-com/makerware/MakerBot%20Bundle%20BETA%20#{version}.dmg"
+  url "https://downloads.makerbot.com/makerware/MakerBot%20Bundle%20BETA%20#{version}.dmg"
   name 'MakerBot Desktop'
-  homepage 'http://www.makerbot.com/desktop'
-  license :gratis
+  homepage 'https://www.makerbot.com/download-desktop/'
 
   pkg "MakerBot Bundle BETA #{version}.pkg"
 
-  uninstall :pkgutil => 'com.makerbot.*'
+  uninstall pkgutil: 'com.makerbot.*'
 end

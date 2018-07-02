@@ -1,11 +1,17 @@
-cask :v1 => 'serviio' do
-  version '1.5.1'
-  sha256 '65964602b8ea1ddc29dfefa1452610b84884caa996c02342cc9ba35d5a34d0f4'
+cask 'serviio' do
+  version '1.8'
+  sha256 '96b71ae837bf83bbb19b3e7d94227e9a4f687e53d9e0b06ff8970cf096f98905'
 
   url "http://download.serviio.org/releases/serviio-#{version}-osx.tar.gz"
   name 'Serviio'
   homepage 'http://serviio.org/'
-  license :commercial
 
   pkg "Serviio-#{version}.pkg"
+
+  uninstall pkgutil: [
+                       'org.serviio.pkg.autostart',
+                       'org.serviio.pkg.JRE',
+                       'org.serviio.pkg.ServiioConsole',
+                       'org.serviio.pkg.Serviio',
+                     ]
 end

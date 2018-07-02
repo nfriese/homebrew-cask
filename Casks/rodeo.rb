@@ -1,12 +1,13 @@
-cask :v1 => 'rodeo' do
-  version '1.1.19'
-  sha256 '7c91c88715e05cebf6ce2f64551c26d560c1675d786c7f1b5ff6bee03b5fcc79'
+cask 'rodeo' do
+  version '2.5.2'
+  sha256 '9e96d1966cc2a5159c4079312e30c1c20ad834fa766bc92dac938fb944c79d0d'
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "http://rodeo-releases.s3.amazonaws.com/#{version}/Rodeo-v#{version}-darwin_64.dmg"
+  # github.com/yhat/rodeo was verified as official when first introduced to the cask
+  url "https://github.com/yhat/rodeo/releases/download/v#{version}/Rodeo-#{version}.dmg"
+  appcast 'https://github.com/yhat/rodeo/releases.atom',
+          checkpoint: '11314607f359d744a2a1f03a11aef9528e71290df56645f146d9a9a94974c893'
   name 'Rodeo'
   homepage 'http://rodeo.yhat.com/'
-  license :closed
 
   app 'Rodeo.app'
 end

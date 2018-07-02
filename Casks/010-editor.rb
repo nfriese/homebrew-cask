@@ -1,13 +1,10 @@
-cask :v1 => '010-editor' do
-  version :latest
-  sha256 :no_check
+cask '010-editor' do
+  version '7.0.2'
+  sha256 'd83c7a34151eba65946ad6dcd9459cd1a83e618211ea8db99b5c35361b544f46'
 
-  url 'http://www.sweetscape.com/download/010EditorMacInstaller.dmg'
+  url "https://download.sweetscape.com/010EditorMac64Installer#{version.no_dots}.dmg"
   name '010 Editor'
-  homepage 'http://www.sweetscape.com/'
-  license :commercial
+  homepage 'https://www.sweetscape.com/'
 
-  pkg '010 Editor.pkg'
-
-  uninstall :pkgutil => 'com.SweetScape.010Editor.pkg'
+  app '010 Editor.app'
 end

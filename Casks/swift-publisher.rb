@@ -1,14 +1,13 @@
-cask :v1 => 'swift-publisher' do
-  version :latest
-  sha256 :no_check
+cask 'swift-publisher' do
+  version '4.0.4'
+  sha256 '743204d13b5945eda94a1b2d7b4589b522f680a1d4f4b5f83c0163c2409ec801'
 
-  # amazonaws.com is the official download host per the vendor homepage
+  # s3.amazonaws.com/belightsoft was verified as official when first introduced to the cask
   url 'https://s3.amazonaws.com/belightsoft/SwiftPublisher.dmg'
+  appcast "https://www.belightsoft.com/download/updates/appcast_SwiftPublisher#{version.major}.xml",
+          checkpoint: 'd6a4ec3a83b57ec88a5618ce44c518faa4618caa03e00234afd1d8da972af4ec'
   name 'Swift Publisher'
-  appcast 'https://www.belightsoft.com/download/updates/appcast_SwiftPublisher3.xml',
-          :sha256 => '73bf29fcb6fa689fa32e5a1666ffb8db22401a6033a91e2866fc95d1be7ffd96'
-  homepage 'https://www.belightsoft.com/products/swiftpublisher/overview.php'
-  license :closed
+  homepage 'https://www.belightsoft.com/products/swiftpublisher/'
 
-  app 'Swift Publisher 3.app'
+  app "Swift Publisher #{version.major}.app"
 end

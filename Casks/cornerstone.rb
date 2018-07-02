@@ -1,13 +1,12 @@
-cask :v1 => 'cornerstone' do
-  version '2.7.18'
-  sha256 'caddc967fa98693d005383d133e79ee20cebc85aabcffe39bbc8c1ac77d51306'
+cask 'cornerstone' do
+  version '3.0.3'
+  sha256 '23d5da55c4b17e90515b2af3b54b66bdca3752b4b5c4dc520752d27be90d41b5'
 
   url "https://www.zennaware.com/cornerstone/downloads/Cornerstone-#{version}.zip"
-  appcast 'https://www.zennaware.com/cornerstone/appcast/feed2.php',
-          :sha256 => 'a7dfb9c52e5389f9182160a1390a0319b0c363b08318a6e6ca036f88f5b348ab'
+  appcast 'https://www.zennaware.com/cornerstone/appcast/feed3.php',
+          checkpoint: 'edab413cebd5ccd982e9bf7b3482030264dab4528fe1c486468b010296b1ad06'
   name 'Cornerstone'
   homepage 'https://www.zennaware.com/cornerstone/'
-  license :commercial
 
   app 'Cornerstone.app'
 end

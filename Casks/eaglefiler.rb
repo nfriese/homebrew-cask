@@ -1,11 +1,10 @@
-cask :v1 => 'eaglefiler' do
-  version '1.6.5'
-  sha256 '1b1c714be59f3e8ea3ed1fd2322672c08d217f8360b61172feeb4ea952f382b7'
+cask 'eaglefiler' do
+  version '1.7.5'
+  sha256 '0105c3cd7027d9d0f6f158814143358fe3d80414ad44fe923a6f74828f10cb8a'
 
   url "https://c-command.com/downloads/EagleFiler-#{version}.dmg"
   name 'EagleFiler'
   homepage 'https://c-command.com/eaglefiler/'
-  license :commercial
 
   app 'EagleFiler.app'
 end

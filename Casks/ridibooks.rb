@@ -1,17 +1,16 @@
-cask :v1 => 'ridibooks' do
-  version '1.5.9b'
-  sha256 '27e06ef0625f8958a909c7801bfd0108d975164fec9b241d1a12ab083edea2e0'
+cask 'ridibooks' do
+  version '2.1.3'
+  sha256 '1415c9c7f88c9e45fd5e91bc7952934b1958b21ede6ca4d80e2e44ef9d8bef2e'
 
-  # ridicorp.com is the official download host per the vendor homepage
-  url "http://cdn.ridicorp.com/app/mac/ridibooks-#{version}.dmg"
+  # ridicorp.com was verified as official when first introduced to the cask
+  url "https://cdn.ridicorp.com/app/mac/ridibooks-#{version}.dmg"
   name 'Ridibooks'
   homepage 'https://ridibooks.com/support/app/download'
-  license :gratis
 
   app 'Ridibooks.app'
 
-  zap :delete => [
-                  '~/Library/Application Support/RIDI',
-                  '~/Library/Preferences/com.ridibooks.Ridibooks.plist',
-                 ]
+  zap delete: [
+                '~/Library/Application Support/RIDI',
+                '~/Library/Preferences/com.ridibooks.Ridibooks.plist',
+              ]
 end

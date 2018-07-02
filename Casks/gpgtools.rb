@@ -1,58 +1,72 @@
-cask :v1 => 'gpgtools' do
-  version '2015.09'
-  sha256 '0ec0f4bb66ef660d3c3b0433dd3186e093a1b4f23bf8fac8b4ebca9fa6d80420'
+cask 'gpgtools' do
+  version '2016.10_v2'
+  sha256 '8dbc5821876ca5c470d0127087f782ba02a842c52e6e19336cd935db7c5859ab'
 
   url "https://releases.gpgtools.org/GPG_Suite-#{version}.dmg"
-  gpg "#{url}.sig",
-      :key_url => 'https://gpgtools.org/GPGTools%2000D026C4.asc'
-  name 'GPG Suite'
   appcast 'https://gpgtools.org/releases/gka/appcast.xml',
-          :sha256 => '23d1d5dea53c4c380bed5f7b6331060539e3acd62cd844bda834388d0a26da81'
+          checkpoint: 'b0e18b27c8464ec73f909ad47ac60cf66dc65ba8a1d534d4a3258d2ce399bb1f'
+  name 'GPG Suite'
   homepage 'https://gpgtools.org/'
-  license :gpl
+  gpg "#{url}.sig",
+      key_url: 'https://gpgtools.org/GPGTools%2000D026C4.asc'
+
+  auto_updates true
 
   pkg 'Install.pkg'
-  # todo, remove all ENV variables
-  postflight do
-    system '/usr/bin/sudo', '-E', '--',
-           '/usr/local/MacGPG2/libexec/fixGpgHome', Etc.getpwuid(Process.euid).name,
-                                                    ENV['GNUPGHOME'] ? ENV['GNUPGHOME'] : Pathname.new(File.expand_path('~')).join('.gnupg')
+
+  uninstall_postflight do
+    %w[gpg gpg2 gpg-agent].map { |exec_name| "/usr/local/bin/#{exec_name}" }.each do |exec|
+      File.rm(exec) if File.exist?(exec) && File.readlink(exec).include?('MacGPG2')
+    end
   end
 
-  uninstall :pkgutil => 'org.gpgtools.*',
-            :quit => [
-                      'com.apple.mail',
-                      'org.gpgtools.gpgkeychainaccess',
-                      'org.gpgtools.gpgservices',
-                     ],
-            :launchctl => [
-                           'org.gpgtools.macgpg2.shutdown-gpg-agent',
-                           'org.gpgtools.Libmacgpg.xpc',
-                           'org.gpgtools.gpgmail.enable-bundles',
-                           'org.gpgtools.gpgmail.user-uuid-patcher',
-                           'org.gpgtools.gpgmail.uuid-patcher',
-                           'org.gpgtools.macgpg2.fix',
-                           'org.gpgtools.macgpg2.updater',
-                          ],
-            :delete => [
-                        '/Applications/GPG Keychain Access.app',
-                        '/Applications/GPG Keychain.app',
-                        '/usr/local/MacGPG2',
-                        '/Library/Services/GPGServices.service',
-                        '/Library/Mail/Bundles/GPGMail.mailbundle',
-                        '/Library/PreferencePanes/GPGPreferences.prefPane',
+  uninstall script:    {
+                         executable: "#{staged_path}/Uninstall.app/Contents/Resources/GPG Suite Uninstaller.app/Contents/Resources/uninstall.sh",
+                         sudo:       true,
+                       },
+            pkgutil:   'org.gpgtools.*',
+            quit:      [
+                         'com.apple.mail',
+                         'org.gpgtools.gpgkeychainaccess',
+                         'org.gpgtools.gpgkeychain',
+                         'org.gpgtools.gpgservices',
+                         # TODO: add "killall -kill gpg-agent"
+                       ],
+            launchctl: [
+                         'org.gpgtools.Libmacgpg.xpc',
+                         'org.gpgtools.gpgmail.patch-uuid-user',
+                         'org.gpgtools.macgpg2.fix',
+                         'org.gpgtools.macgpg2.shutdown-gpg-agent',
+                         'org.gpgtools.macgpg2.updater',
+                         'org.gpgtools.macgpg2.gpg-agent',
+                       ],
+            delete:    [
+                         '/Library/Services/GPGServices.service',
+                         '/Library/Mail/Bundles/GPGMail.mailbundle',
+                         '/Network/Library/Mail/Bundles/GPGMail.mailbundle',
+                         '/usr/local/MacGPG2',
+                         '/private/etc/paths.d/MacGPG2',
+                         '/private/etc/manpaths.d/MacGPG2',
+                         '/private/tmp/gpg-agent',
+                         '/Library/PreferencePanes/GPGPreferences.prefPane',
+                         '/Applications/GPG Keychain Access.app',
+                         '/Applications/GPG Keychain.app',
+                         '/Library/Application Support/GPGTools',
+                         '/Library/Frameworks/Libmacgpg.framework',
                        ]
-  uninstall_postflight do
-    system '/bin/bash', '-c', '[[ "$(/usr/bin/readlink /usr/local/bin/gpg2)"      =~ MacGPG2 ]] && /bin/rm -- /usr/local/bin/gpg2'
-    system '/bin/bash', '-c', '[[ "$(/usr/bin/readlink /usr/local/bin/gpg)"       =~ MacGPG2 ]] && /bin/rm -- /usr/local/bin/gpg'
-    system '/bin/bash', '-c', '[[ "$(/usr/bin/readlink /usr/local/bin/gpg-agent)" =~ MacGPG2 ]] && /bin/rm -- /usr/local/bin/gpg-agent'
-  end
-  zap       :delete => [
-                        '~/Library/Services/GPGServices.service',
-                        '~/Library/Mail/Bundles/GPGMail.mailbundle',
-                        '~/Library/PreferencePanes/GPGPreferences.prefPane',
-                        # todo expand/glob for ~/Library/Caches/org.gpgtools.gpg*
-                       ]
+
+  zap delete: [
+                '~/Library/Services/GPGServices.service',
+                '~/Library/Mail/Bundles/GPGMail.mailbundle',
+                '~/Library/PreferencePanes/GPGPreferences.prefPane',
+                '~/Library/LaunchAgents/org.gpgtools.*',
+                '~/Library/Preferences/org.gpgtools.*',
+                '~/Library/Containers/com.apple.mail/Data/Library/Preferences/org.gpgtools.*',
+                '~/Library/Application Support/GPGTools',
+                '~/Library/Frameworks/Libmacgpg.framework',
+                '~/Containers/com.apple.mail/Data/Library/Frameworks/Libmacgpg.framework',
+                '~/Library/Caches/org.gpgtools.gpg*',
+              ]
 
   caveats do
     files_in_usr_local

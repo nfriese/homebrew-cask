@@ -1,13 +1,13 @@
-cask :v1 => 'fing' do
-  version '2.3'
-  sha256 'ffa5d42e023d0da50eed152b78f91b1341ff4547f0a92e43be48131f30408e15'
+cask 'fing' do
+  version '3.0,2016-09'
+  sha256 'a8497ce00d58609d8677c6c7850e479420516d94e9f37d681dbdc970359294c6'
 
-  url 'http://www.overlooksoft.com/packages/download?plat=osx'
+  # 39qiv73eht2y1az3q51pykkf-wpengine.netdna-ssl.com was verified as official when first introduced to the cask
+  url "https://39qiv73eht2y1az3q51pykkf-wpengine.netdna-ssl.com/wp-content/uploads/#{version.after_comma.hyphens_to_slashes}/overlook-fing-#{version.before_comma}.dmg_.zip"
   name 'Fing'
-  homepage 'http://www.overlooksoft.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.fing.io/'
 
-  pkg "overlook-fing-#{version}.pkg"
+  pkg "overlook-fing-#{version.before_comma}.pkg"
 
-  uninstall :pkgutil => 'com.Overlook.Fing'
+  uninstall pkgutil: 'com.Overlook.Fing'
 end

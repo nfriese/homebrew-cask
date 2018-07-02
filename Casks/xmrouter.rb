@@ -1,13 +1,12 @@
-cask :v1 => 'xmrouter' do
+cask 'xmrouter' do
   version :latest
   sha256 :no_check
 
   url 'http://bigota.miwifi.com/xiaoqiang/client/xqmac_client.dmg'
-  name '小米路由器'
-  name 'miwifi'
   name 'xmrouter'
-  homepage 'http://www1.miwifi.com/'
-  license :gratis
+  name 'miwifi'
+  name '小米路由器'
+  homepage 'http://miwifi.com/'
 
   app 'XMRouter.app'
 end

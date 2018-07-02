@@ -1,13 +1,12 @@
-cask :v1 => 'dupeguru' do
-  version '3.9.1'
-  sha256 '844a929ebb60f3a43a466d3ce3e5ac25b1a79c1a81ae63e19bd9356391589d56'
+cask 'dupeguru' do
+  version '4.0.3'
+  sha256 '805fa0e2ddf57ac7d7e79cebe893a3a505f24c28500a204d22eb2b6d3d889454'
 
-  url "http://download.hardcoded.net/dupeguru_osx_#{version.gsub('.', '_')}.dmg"
+  url "https://download.hardcoded.net/dupeguru_osx_#{version.dots_to_underscores}.dmg"
+  appcast 'https://www.hardcoded.net/updates/dupeguru.appcast',
+          checkpoint: '45e83e6d46bbdec99cd4c9701c54195268d79d1507bd933ad40991d48fb6502f'
   name 'dupeGuru'
-  appcast 'http://www.hardcoded.net/updates/dupeguru.appcast',
-          :sha256 => '3abf01d99fb21c356cb439132cab9c734f6d514b4a19e7fcc1b4c408fcd08dbb'
-  homepage 'http://www.hardcoded.net/dupeguru/'
-  license :bsd
+  homepage 'https://www.hardcoded.net/dupeguru/'
 
   app 'dupeGuru.app'
 end

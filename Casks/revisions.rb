@@ -1,11 +1,12 @@
-cask :v1 => 'revisions' do
-  version '2.0.2'
-  sha256 'df6a238771d30d686cae91b72dd95a31ebe35e73354a08c162eb4ea4b9235836'
+cask 'revisions' do
+  version '2.2.1'
+  sha256 '56622f5f034fa7d5a759ce2db56635bee6382a1eb39d8154db8c724bcc416f07'
 
   url "https://revisionsapp.com/downloads/revisions-#{version}.dmg"
+  appcast 'https://revisionsapp.com/releases',
+          checkpoint: '8c3db32bb569e96b76c42df65d3aeb218cddb965d4a044c7bf9120c65c241ae3'
   name 'Revisions'
   homepage 'https://revisionsapp.com/'
-  license :commercial
 
   app 'Revisions.app'
 end

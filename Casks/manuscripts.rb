@@ -1,11 +1,10 @@
-cask :v1 => 'manuscripts' do
+cask 'manuscripts' do
   version :latest
   sha256 :no_check
 
-  url 'http://updates.manuscriptsapp.com/apps/manuscripts/production/download'
+  url 'https://updates.manuscriptsapp.com/apps/manuscripts/production/download'
   name 'Manuscripts'
-  homepage 'http://www.manuscriptsapp.com'
-  license :freemium
+  homepage 'http://www.manuscriptsapp.com/'
 
   app 'Manuscripts.app'
 end

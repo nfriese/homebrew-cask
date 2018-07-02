@@ -1,13 +1,12 @@
-cask :v1 => 'clipgrab' do
-  version '3.5.1'
-  sha256 '6fcb973702798973acf1ae1fea60ece2b34f4926a7c8ff1f2cc71bbe2b990dff'
+cask 'clipgrab' do
+  version '3.6.3'
+  sha256 '2779fe6ccb4be6e1cd0bf023c5f21b6bde38e33eab33acd4d4b2926ea914e24a'
 
-  url "http://download.clipgrab.de/ClipGrab-#{version}.dmg"
+  url "https://download.clipgrab.org/ClipGrab-#{version}.dmg"
   name 'ClipGrab'
-  homepage 'http://clipgrab.org'
-  license :gratis
+  homepage 'https://clipgrab.org/'
 
   app 'ClipGrab.app'
 
-  zap :delete => '~/Library/Preferences/de.clipgrab.ClipGrab.plist'
+  zap delete: '~/Library/Preferences/de.clipgrab.ClipGrab.plist'
 end

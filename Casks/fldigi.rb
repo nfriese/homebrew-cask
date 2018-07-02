@@ -1,12 +1,13 @@
-cask :v1 => 'fldigi' do
-  version '3.23.06'
-  sha256 '559763738e6a57eb9d8665fe68a45abe612ee2264a89293c9ac8c84daa9dfeec'
+cask 'fldigi' do
+  version '3.23.21'
+  sha256 'dfd6b4690db09753721e869b3a24413a8db39f52ba569aac76a85f66b0ff999d'
 
-  url "http://downloads.sourceforge.net/project/fldigi/fldigi/fldigi-#{version}_i386.dmg"
+  url "https://downloads.sourceforge.net/fldigi/fldigi/fldigi-#{version}_i386.dmg"
+  appcast 'https://sourceforge.net/projects/fldigi/rss?path=/fldigi',
+          checkpoint: 'aa08b31a840dacc7f47393721ea5b875313839d841d345edf1296ac316182025'
   name 'fldigi'
-  homepage 'http://sourceforge.net/projects/fldigi/files/fldigi/'
-  license :gpl
+  homepage 'https://sourceforge.net/projects/fldigi/files/fldigi/'
 
   app "fldigi-#{version}.app"
-  app 'flarq.app'
+  app 'flarq-4.3.6.app'
 end

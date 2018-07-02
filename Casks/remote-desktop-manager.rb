@@ -1,12 +1,11 @@
-cask :v1 => 'remote-desktop-manager' do
-  version '3.0.2.0'
-  sha256 '5b145d2f0b65357d0db57a1bbe7516bb7daa878e6a13398f1238f525efa327be'
+cask 'remote-desktop-manager' do
+  version '4.0.1.0'
+  sha256 '490ba72bc58cd4a2b916ae730dc744f462312dce2c0d3ef4f2a9ea1f1dc9078e'
 
-  # devolutions.net is the official download host per the vendor homepage
+  # devolutions.net was verified as official when first introduced to the cask
   url "http://cdn.devolutions.net/download/Mac/Devolutions.RemoteDesktopManager.Mac.#{version}.dmg"
   name 'Remote Desktop Manager'
-  homepage 'http://mac.remotedesktopmanager.com/'
-  license :commercial
+  homepage 'https://mac.remotedesktopmanager.com/'
 
   app 'Remote Desktop Manager.app'
 end

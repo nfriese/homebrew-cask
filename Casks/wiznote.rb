@@ -1,12 +1,10 @@
-cask :v1 => 'wiznote' do
-  version '2015-12-03'
-  sha256 'b1db69a400712c9e750bde91fab7382935ac6cb95d081c8cac1872b2e59e26a1'
+cask 'wiznote' do
+  version '2.4.4,2017-03-14'
+  sha256 '35090576e94ad67f84c213571818fe44cf45ebc0ad1a977a8a53b2a0d1f95ea6'
 
-  # wiz.cn is the official download host per the vendor homepage
-  url "http://release.wiz.cn/wiznote-macos-#{version}.dmg"
+  url "http://get.wiz.cn/wiznote-macos-#{version.after_comma}.dmg"
   name 'WizNote'
-  homepage 'http://www.wiznote.com/'
-  license :gratis
+  homepage 'http://www.wiz.cn/wiznote-mac.html'
 
   app 'WizNote.app'
 end

@@ -1,32 +1,39 @@
-cask :v1 => 'sourcetree' do
-  if MacOS.release <= :snow_leopard
+cask 'sourcetree' do
+  if MacOS.version <= :snow_leopard
     version '1.8.1'
     sha256 '37a42f2d83940cc7e1fbd573a70c3c74a44134c956ac3305f6b153935dc01b80'
+  elsif MacOS.version <= :mountain_lion
+    version '2.0.5.5'
+    sha256 'f23129587703a706a37d5fdd9b2390875305b482a2b4e4b0e34bd49cba9b63c9'
   else
-    version '2.0.5.8'
-    sha256 '49118ff3a97f6d873e7fbf93706356b8fdeb056ad58974beb95672a06ce30568'
+    version '2.4.1a'
+    sha256 'cec67981d4b8ea8a8e46ac7190d6d4d16a2164427a5c0e2419b1af327fc24815'
   end
 
-  # atlassian.com is the official download host per the vendor homepage
-  url "https://downloads.atlassian.com/software/sourcetree/SourceTree_#{version}.dmg"
+  # atlassian.com was verified as official when first introduced to the cask
+  url "https://downloads.atlassian.com/software/sourcetree/SourceTree_#{version}.zip"
   appcast 'https://www.sourcetreeapp.com/update/SparkleAppcast.xml',
-          :sha256 => '3695f942aaeeba1d9aaf04bcd86f0e7313ae590580c314d595f51260a0305b0f'
-  name 'SourceTree'
+          checkpoint: '6031bd143374559a84872d0b9ecef5420173e11fb3a0453cfaa092878c6bc908'
+  name 'Atlassian SourceTree'
   homepage 'https://www.sourcetreeapp.com/'
-  license :gratis
-  tags :vendor => 'Atlassian'
+
+  auto_updates true
 
   app 'SourceTree.app'
-  binary 'SourceTree.app/Contents/Resources/stree'
+  binary "#{appdir}/SourceTree.app/Contents/Resources/stree"
 
-  uninstall :launchctl => 'com.atlassian.SourceTreePrivilegedHelper2'
-
-  zap :delete => [
-                  '~/Library/Application Support/SourceTree',
-                  '~/Library/Caches/com.torusknot.SourceTreeNotMAS',
-                 ]
-
-  caveats do
-    files_in_usr_local
+  postflight do
+    suppress_move_to_applications
   end
+
+  uninstall launchctl: 'com.atlassian.SourceTreePrivilegedHelper2',
+            quit:      'com.torusknot.SourceTreeNotMAS'
+
+  zap delete: [
+                '~/Library/Application Support/SourceTree',
+                '~/Library/Caches/com.torusknot.SourceTreeNotMAS',
+                '~/Library/Preferences/com.torusknot.SourceTreeNotMAS.plist',
+                '~/Library/Preferences/com.torusknot.SourceTreeNotMAS.LSSharedFileList.plist',
+                '~/Library/Saved Application State/com.torusknot.SourceTreeNotMAS.savedState',
+              ]
 end

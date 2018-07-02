@@ -1,13 +1,13 @@
-cask :v1 => 'royal-tsx' do
-  version '2.2.1.1'
-  sha256 '5041be5501b87612070677efe0b3752e6051833033a95c9f0ba99a72833ef34e'
+cask 'royal-tsx' do
+  version '3.0.0.1000'
+  sha256 'cd2fce3697f9b414285b2631587d4c2449e0f45a686f1869288e2ac11de958ff'
 
-  url "http://v2.royaltsx.com/updates/royaltsx_#{version}.dmg"
-  appcast 'http://v2.royaltsx.com/updates_beta.php',
-          :sha256 => '326f26d7c0d628d5fbccfdb4986593a5da5288b26d71bbfa7e504747cb08d309'
+  # https://royaltsx-v3.royalapplications.com was verified as official when first introduced to the cask
+  url "https://royaltsx-v3.royalapplications.com/updates/royaltsx_#{version}.dmg"
+  appcast "https://royaltsx-v#{version.major}.royalapplications.com/updates_stable.php",
+          checkpoint: '0e3d44af016fd5446a0e853ce4dda3991f79239564f50c25a44defea75df6045'
   name 'Royal TSX'
-  homepage 'http://www.royaltsx.com'
-  license :freemium
+  homepage 'https://www.royalapplications.com/ts/osx/features'
 
   app 'Royal TSX.app'
 end

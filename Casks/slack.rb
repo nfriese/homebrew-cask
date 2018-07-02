@@ -1,14 +1,28 @@
-cask :v1 => 'slack' do
-  version '1.1.8'
-  sha256 'a3c9833329da4f1fc11947f5d944742caf95efca6d8246e9f8f6887b40686d6a'
+cask 'slack' do
+  version '2.5.2'
+  sha256 'ad86ac7b1d576c2ee9e168f4ef74fa5829f3c4299748b1534bb8cf2ef4712c9c'
 
-  # fastly.net is the official download host per the vendor homepage
-  url "https://slack-ssb-updates.global.ssl.fastly.net/mac_public_releases/slack-#{version}.zip"
-  appcast 'https://rink.hockeyapp.net/api/2/apps/38e415752d573e7e78e06be8daf5acc1',
-          :sha256 => 'd514f17a63177586191a2e7955ac4dbcc8b10ce2eb56c4ae992b69b1e543f22e'
+  # downloads.slack-edge.com was verified as official when first introduced to the cask
+  url "https://downloads.slack-edge.com/mac_releases/Slack-#{version}-macOS.zip"
   name 'Slack'
   homepage 'https://slack.com/'
-  license :gratis
+
+  auto_updates true
 
   app 'Slack.app'
+
+  uninstall quit: 'com.tinyspeck.slackmacgap'
+
+  zap delete: [
+                '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.tinyspeck.slackmacgap.sfl',
+                '~/Library/Application Support/Slack',
+                '~/Library/Caches/com.tinyspeck.slackmacgap',
+                '~/Library/Caches/com.tinyspeck.slackmacgap.ShipIt',
+                '~/Library/Containers/com.tinyspeck.slackmacgap',
+                '~/Library/Containers/com.tinyspeck.slackmacgap.SlackCallsService',
+                '~/Library/Cookies/com.tinyspeck.slackmacgap.binarycookies',
+                '~/Library/Preferences/com.tinyspeck.slackmacgap.plist',
+                '~/Library/Preferences/com.tinyspeck.slackmacgap.helper.plist',
+                '~/Library/Saved Application State/com.tinyspeck.slackmacgap.savedState',
+              ]
 end

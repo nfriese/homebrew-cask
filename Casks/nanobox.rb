@@ -1,26 +1,22 @@
-cask :v1 => 'nanobox' do
-  version :latest
-  sha256 :no_check
+cask 'nanobox' do
+  version '0.18.2'
+  sha256 '433efa3076ab217e04707f8707476af48b1bc2727791cfcb5230d12a9003be1b'
 
-  # amazonaws.com is the official download host per the vendor homepage
+  # s3.amazonaws.com/tools.nanobox.io was verified as official when first introduced to the cask
   url 'https://s3.amazonaws.com/tools.nanobox.io/cli/darwin/amd64/nanobox'
+  appcast 'https://github.com/nanobox-io/nanobox/releases.atom',
+          checkpoint: '1aa4e3a08daed735dc993d058f352667d55a0d060fb6f1f63868e57a27ac1900'
   name 'nanobox'
-  homepage 'http://www.nanobox.io/'
-  license :mpl
+  homepage 'https://www.nanobox.io/'
 
-  depends_on :cask => 'virtualbox'
-  depends_on :cask => 'vagrant'
-
-  container :type => :naked
+  depends_on cask: 'virtualbox'
+  depends_on cask: 'vagrant'
+  container type: :naked
 
   binary 'nanobox'
 
-  postflight do
-    set_permissions "#{staged_path}/nanobox", '755'
-  end
-
-  zap :delete => [
-                    '~/.nanobox',
-                    '/opt/nanobox',
-                ]
+  zap delete: [
+                '~/.nanobox',
+                '/opt/nanobox',
+              ]
 end

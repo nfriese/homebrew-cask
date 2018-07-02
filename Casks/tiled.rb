@@ -1,13 +1,13 @@
-cask :v1 => 'tiled' do
-  version '0.14.2'
-  sha256 'ee8c7f3bba284d3fe5fa89cfe313f60bdd20e1386f08ed2649b60cb9159d268a'
+cask 'tiled' do
+  version '0.18.1'
+  sha256 '9e10a68320cc46137f9f8efbab161d63d9d20b998230ea25d20e48d21387494b'
 
-  # github.com is the official download host per the vendor homepage
+  # github.com/bjorn/tiled was verified as official when first introduced to the cask
   url "https://github.com/bjorn/tiled/releases/download/v#{version}/tiled-#{version}.dmg"
-  appcast 'https://github.com/bjorn/tiled/releases.atom'
+  appcast 'https://github.com/bjorn/tiled/releases.atom',
+          checkpoint: 'ee27a4e25a860f377a6823bfdce3b72fad3d25103513eecb445a709aa8d24e93'
   name 'Tiled'
   homepage 'http://www.mapeditor.org/'
-  license :gpl
 
   app 'Tiled.app'
 end

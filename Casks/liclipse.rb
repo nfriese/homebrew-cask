@@ -1,12 +1,11 @@
-cask :v1 => 'liclipse' do
-  version '2.1.0'
-  sha256 '3b6077e3208d92ac313f685f05fd20aee6705df9461db88a9141899969a7b623'
+cask 'liclipse' do
+  version '3.5.0'
+  sha256 '22099c6ff59c91670f1878bb6a8ca97e02f5ad6c76d66c0b64eced147adfe85a'
 
-  # googledrive.com is the official download host per the vendor homepage
-  url "https://googledrive.com/host/0BwwQN8QrgsRpLVlDeHRNemw3S1E/LiClipse%20#{version}/liclipse_#{version}_macosx.cocoa.x86_64.dmg"
+  # mediafire.com/file/pw05os9ewtfb35k was verified as official when first introduced to the cask
+  url "http://www.mediafire.com/file/pw05os9ewtfb35k/liclipse_#{version}_macosx.cocoa.x86_64.dmg"
   name 'LiClipse'
-  homepage 'http://www.liclipse.com/'
-  license :commercial
+  homepage 'https://www.liclipse.com/'
 
-  app 'liclipse/LiClipse.app'
+  app 'LiClipse.app'
 end

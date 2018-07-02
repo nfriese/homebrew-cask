@@ -1,13 +1,12 @@
-cask :v1 => 'daylite' do
-  version '5.0.10'
-  sha256 'b9243e731511d3b7f29a453e886e4f8e3c60c961ee047d25bff8151baeb728cd'
+cask 'daylite' do
+  version '6.0.8'
+  sha256 '564325ecd8931b8b8e69bdad473b1de68440011195fdd5944d963afe0ac76b17'
 
-  url "https://download.marketcircle.com/daylite/daylitedma#{version.delete('.')}.dmg"
+  url "https://download.marketcircle.com/daylite/daylitedma#{version.no_dots}.dmg"
   name 'Daylite'
   homepage 'https://www.marketcircle.com/daylite/'
-  license :commercial
 
   pkg 'Install Daylite & Mail Assistant.pkg'
 
-  uninstall :pkgutil => 'com.marketcircle.Daylite4.*'
+  uninstall pkgutil: 'com.marketcircle.Daylite4.*'
 end

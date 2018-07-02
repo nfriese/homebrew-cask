@@ -1,13 +1,20 @@
-cask :v1 => 'game-capture-hd' do
-  version '2.0.1_941'
-  sha256 '0db1d5322b0f57a113452fab01cfa28c4bd379332f99844ec738e47824f65370'
+cask 'game-capture-hd' do
+  if MacOS.version <= '10.10'
+    version '2.0.5_983'
+    sha256 '4803bcac9069e1e63a89e9053fdf2285487acf9e608e84f7610555075489ad5a'
 
-  url "http://files.elgato.com/gamecapture/gchdm_#{version.delete('.')}.dmg"
-  name 'Game Capture HD'
+    url "http://files.elgato.com/gamecapture/gchdm_#{version.no_dots}.dmg"
+  else
+    version '2.5.1_1123'
+    sha256 'e4c8b6cce606d9254a67bbd4784354bb837674ada28d326753edcac340edb2f9'
+
+    url "https://edge.elgato.com/egc/macos/egcm/#{version.major_minor_patch}/final/gchdm_#{version.no_dots}.dmg"
+  end
+
   appcast 'http://updates.elgato.com/autoupdate/gameCapture20.rss?lang=English',
-          :sha256 => '944d2a802d710c885d8218f7a5aa802e37b5c53f0fb85f52269830113f21d1ea'
+          checkpoint: 'd35e51bebe6a775722c02bd53f3804d2530f4df98c833c0057ff76c62d0d0a19'
+  name 'Game Capture HD'
   homepage 'https://www.elgato.com/en/gaming/gamecapture-hd'
-  license :commercial
 
   app 'Game Capture HD.app'
 end

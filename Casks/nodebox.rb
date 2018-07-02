@@ -1,11 +1,12 @@
-cask :v1 => 'nodebox' do
-  version '3.0.43'
-  sha256 '3c0f93ad72d0bb1fba3a517515b38a7a6bd24cffe0d5560395b3fbaebdc72444'
+cask 'nodebox' do
+  version '3.0.45'
+  sha256 '076c35226af46fc3a5c99488cef642cd857c4a7c32ce23ac7b2ea2ee5e8a687d'
 
   url "https://secure.nodebox.net/downloads/NodeBox-#{version}.zip"
+  appcast 'https://www.nodebox.net/node/release-notes.html',
+          checkpoint: '6294533c26f1851752ebdc9eef6d637d241dacac9f4b83cd06d989c6991d3230'
   name 'NodeBox'
   homepage 'https://www.nodebox.net/node/'
-  license :gpl
 
   app 'NodeBox.app'
 end

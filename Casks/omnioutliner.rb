@@ -1,11 +1,10 @@
-cask :v1 => 'omnioutliner' do
-  version '4.3'
-  sha256 '8941d9738c3377f4f57f097ff5bf24faa133bd0bf25498d919db751487153357'
+cask 'omnioutliner' do
+  version '5.0.1'
+  sha256 '6b9e85db62565e804562701b16dfa30e51469d54e6c8faacb7dd1aee6b293c95'
 
-  url "http://downloads2.omnigroup.com/software/MacOSX/10.10/OmniOutliner-#{version}.dmg"
+  url "https://downloads.omnigroup.com/software/MacOSX/10.11/OmniOutliner-#{version}.dmg"
   name 'OmniOutliner'
   homepage 'https://www.omnigroup.com/omnioutliner/'
-  license :commercial
 
   app 'OmniOutliner.app'
 end

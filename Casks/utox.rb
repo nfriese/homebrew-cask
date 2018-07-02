@@ -1,12 +1,13 @@
-cask :v1 => 'utox' do
-  version '0.4.4'
-  sha256 'e18e9f02b22f837d284c6669c552fa1634ed319d353e3605d92f9412666c8fa9'
+cask 'utox' do
+  version '0.9.8'
+  sha256 'a004c4bb1b01963fa910482bf6631a1f3a5c60ebf575259c168f5d95f38356eb'
 
-  # zodiaclabs.org is the official download host per the vendor homepage
-  url "https://zodiaclabs.org/storage/c1/uTox-#{version}.dmg"
+  # github.com/uTox/uTox was verified as official when first introduced to the cask
+  url "https://github.com/uTox/uTox/releases/download/v#{version}/uTox-#{version}.dmg"
+  appcast 'https://github.com/uTox/uTox/releases.atom',
+          checkpoint: 'eee22a515c835b9a12c6dfc727a144227c27ec56d1b613a46362c8927b333a4a'
   name 'uTox'
-  homepage 'https://www.tox.chat'
-  license :oss
+  homepage 'https://www.tox.chat/'
 
   app 'uTox.app'
 end

@@ -1,11 +1,12 @@
-cask :v1 => 'simpletag' do
-  version '1.5.8'
-  sha256 'dcd183808fa09dd15d7ec9c1050fee7588e59b9bbaa8cd0fd49e337d2ed2028a'
+cask 'simpletag' do
+  version '1.5.10'
+  sha256 '32bb973f784e63271467cf28b1a877053a0e9d435d6eed15d3f05ef76c286ab0'
 
-  url "http://downloads.sourceforge.net/sourceforge/simpletag/simpletag-gui-#{version}-osx.zip"
+  url "https://downloads.sourceforge.net/simpletag/simpletag-gui-#{version}-osx.zip"
+  appcast 'https://sourceforge.net/projects/simpletag/rss',
+          checkpoint: '7ce71edc7aec04c948ba801d49132b164d164c7d4c9dc019275ae8ad2b254288'
   name 'SimpleTAG'
-  homepage 'http://sourceforge.net/projects/simpletag/'
-  license :gpl
+  homepage 'https://sourceforge.net/projects/simpletag/'
 
   app "simpletag-gui-jface-#{version}/SimpleTAG-GUI.app"
 end

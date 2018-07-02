@@ -1,12 +1,11 @@
-cask :v1 => 'exist-db' do
-  version '2.2RC2'
-  sha256 '35aa7e36f21043629a7d562968cc803e6dae84429be4a0d1c77ed62bdf6f9f2f'
+cask 'exist-db' do
+  version '3.1.1'
+  sha256 'a5dd6b8e21da6c83da843f26c92482ca8786c167e8ef4bb8c0b28ce9b29dd373'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/exist/eXist-db-#{version}.dmg"
+  # bintray.com/artifact/download/existdb was verified as official when first introduced to the cask
+  url "https://bintray.com/artifact/download/existdb/releases/eXist-db-#{version}.dmg"
   name 'eXist-db'
-  homepage 'http://exist-db.org/'
-  license :gpl
+  homepage 'http://exist-db.org/exist/apps/homepage/index.html'
 
   app 'eXist-db.app'
 end

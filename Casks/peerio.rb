@@ -1,11 +1,10 @@
-cask :v1 => 'peerio' do
+cask 'peerio' do
   version :latest
   sha256 :no_check
 
   url 'https://peerio.com/download/peerio-mac.zip'
   name 'Peerio'
-  homepage 'https://peerio.com/'
-  license :gpl
+  homepage 'https://www.peerio.com/'
 
   app 'Peerio.app'
 end

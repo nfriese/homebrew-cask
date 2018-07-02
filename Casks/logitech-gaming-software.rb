@@ -1,19 +1,18 @@
-cask :v1 => 'logitech-gaming-software' do
-  version '8.53.10'
-  sha256 '60ce2aacf33ab523333328128ce96239e6e4bb90f6100d1d7d3d40fce28185a9'
+cask 'logitech-gaming-software' do
+  version '8.89.38'
+  sha256 '6f31f26d8e26235560fc82ea25091617a45d204f4560563da5867d4ec0415a2c'
 
-  url "http://www.logitech.com/pub/techsupport/gaming/LogiGamingSetup_#{version}.mpkg"
+  url "https://download01.logitech.com/web/ftp/pub/techsupport/gaming/LogitechSetup_#{version}.zip"
   name 'Logitech Gaming Software'
-  homepage 'http://www.logitech.com/en-us/support/gaming-software?section=downloads&bit=&osid=36'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://support.logitech.com/en_us/downloads'
 
-  pkg "LogiGamingSetup_#{version}.mpkg"
+  pkg 'LogitechGamingInstaller.app/Contents/Resources/LogiGamingSetup.mpkg'
 
-  uninstall :script => '/Applications/Logitech/Uninstaller.app/Contents/Resources/UninstallScript.sh',
-            :pkgutil => [
-                        'com.logitech.gaming',
-                        'com.logitech.lcdmanager',
-                        ]
+  uninstall script:  '/Applications/Logitech/Uninstaller.app/Contents/Resources/UninstallScript.sh',
+            pkgutil: [
+                       'com.logitech.gaming',
+                       'com.logitech.lcdmanager',
+                     ]
 
   caveats do
     reboot

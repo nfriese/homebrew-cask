@@ -1,13 +1,12 @@
-cask :v1 => 'tokens' do
-  version :latest
-  sha256 :no_check
+cask 'tokens' do
+  version '1.5.4'
+  sha256 '9b33639cdd9037d7c385432c3e2aabc0cce066002b5f3b767b82257f3cda167b'
 
-  url 'http://usetokens.com/latest'
-  name 'Tokens'
+  url "http://resources.usetokens.com/download/#{version}/Tokens.app.zip"
   appcast 'http://api.usetokens.com/updates/stable',
-          :sha256 => '87feb75f006cd8570bf7d11102e43576e7e6c9a3558454ebaf19376d587e3bc3'
+          checkpoint: 'd61bd5c28aeb1288b7e47d17456eb938182368935f54a77b973f3e5d1b645b1f'
+  name 'Tokens'
   homepage 'http://usetokens.com/'
-  license :closed
 
   app 'Tokens.app'
 end

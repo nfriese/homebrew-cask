@@ -1,13 +1,12 @@
-cask :v1 => 'crashcrier' do
+cask 'crashcrier' do
   version :latest
   sha256 :no_check
 
-  url 'http://www.kainjow.com/downloads/CrashCrier.zip'
+  url 'https://www.kainjow.com/downloads/CrashCrier.zip'
   name 'CrashCrier'
-  homepage 'http://www.kainjow.com/'
-  license :mit
+  homepage 'https://www.kainjow.com/'
 
   app 'CrashCrier.app'
 
-  uninstall :quit => 'com.kainjow.CrashCrier'
+  uninstall quit: 'com.kainjow.CrashCrier'
 end

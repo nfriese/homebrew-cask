@@ -1,11 +1,10 @@
-cask :v1 => 'zoc' do
-  version '7.06.0'
-  sha256 '08549be9d919bae6761f4cac784ab1bbead1758e4938e130289114099ed44768'
+cask 'zoc' do
+  version '7.13.0'
+  sha256 '1424938212756240fb254d02dab629c263443734283ee6a8580d777704db4836'
 
-  url "http://www.emtec.com/downloads/zoc/zoc#{version.delete('.')}.dmg"
+  url "https://www.emtec.com/downloads/zoc/zoc#{version.no_dots}.dmg"
   name 'ZOC'
-  homepage 'http://www.emtec.com/zoc/'
-  license :commercial
+  homepage 'https://www.emtec.com/zoc/'
 
-  app 'zoc7.app'
+  app "zoc#{version.major}.app"
 end

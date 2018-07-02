@@ -1,13 +1,11 @@
-cask :v1 => 'synthesia' do
-  version '10.1'
-  sha256 '394418e9a32cd2dc53858f8721c81832be3ca460c0cf210bd8e179f1d6b2ba1d'
+cask 'synthesia' do
+  version '10.3'
+  sha256 'd1152c5575969a81df535fa9b63824f63b2520865cbb4760dfc578cba5af9bd7'
 
-  # amazonaws.com is the official download host per the vendor homepage
+  # synthesia.s3.amazonaws.com was verified as official when first introduced to the cask
   url "https://synthesia.s3.amazonaws.com/files/Synthesia-#{version}.dmg"
   name 'Synthesia'
-  homepage 'http://www.synthesiagame.com'
-  license :freemium
+  homepage 'https://www.synthesiagame.com/'
 
   app 'Synthesia.app'
-  app 'SynthesiaConfig.app'
 end

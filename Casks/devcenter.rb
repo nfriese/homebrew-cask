@@ -1,11 +1,10 @@
-cask :v1 => 'devcenter' do
-  version '1.4.1'
-  sha256 '204f7d9b9a52b0473fd045206006931d545ac7db1e54591325729c32f9ed4e2c'
+cask 'devcenter' do
+  version '1.6.0'
+  sha256 '2f803cdc700e3dd06d5bbad8d5c3039f6aa9a793baee42fc043439b495832ac3'
 
   url "https://downloads.datastax.com/devcenter/DevCenter-#{version}-macosx-x86_64.tar.gz"
   name 'DataStax DevCenter'
-  homepage 'http://www.datastax.com/what-we-offer/products-services/devcenter'
-  license :gratis
+  homepage 'https://www.datastax.com/products/datastax-devcenter-and-development-tools'
 
-  app 'devcenter/DevCenter.app'
+  suite 'DevCenter'
 end

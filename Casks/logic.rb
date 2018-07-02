@@ -1,11 +1,12 @@
-cask :v1 => 'logic' do
-  version '1.1.34'
-  sha256 'a30535480c38d88c023d5fe83dc53f8e97aa20f3b98fc5c6ecf08bf2ffc50eaf'
+cask 'logic' do
+  version '1.2.12'
+  sha256 'd515f3c21c073ba5cb60001894eff7312a61c3c2a9b9a342328ff19e971996d6'
 
-  url "http://downloads.saleae.com/betas/#{version}/Logic-#{version}-Darwin.dmg"
+  url "http://downloads.saleae.com/logic/#{version}/Logic-#{version}-Darwin.dmg"
   name 'Logic'
   homepage 'https://www.saleae.com/'
-  license :commercial
+
+  depends_on macos: '>= :lion'
 
   app 'Logic.app'
 end

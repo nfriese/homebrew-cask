@@ -1,14 +1,23 @@
-cask :v1 => 'boinc' do
-  version '7.6.12'
-  sha256 '194c91040807d995a5f54574c207d12b8970008319e146abb8fcfa13f75e39c6'
+cask 'boinc' do
+  version '7.6.33'
+  sha256 '9ac51c916ffce4ba4822d0b8f304018a4c96b5580cf48249a864053d1e166871'
 
-  url "http://boinc.berkeley.edu/dl/boinc_#{version}_macOSX_x86_64.zip"
-  name 'BOINC'
+  url "https://boinc.berkeley.edu/dl/boinc_#{version}_macOSX_x86_64.zip"
   name 'Berkeley Open Infrastructure for Network Computing'
+  name 'BOINC'
   homepage 'https://boinc.berkeley.edu/'
-  license :gpl
 
   pkg "boinc_#{version}_macOSX_x86_64/BOINC Installer.app/Contents/Resources/BOINC.pkg"
 
-  uninstall :pkgutil => 'edu.berkeley.boinc'
+  uninstall pkgutil: 'edu.berkeley.boinc'
+
+  zap delete: [
+                '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/edu.berkeley.boinc.sfl',
+                '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/edu.berkeley.boinc.*.sfl',
+                '~/Library/Application Support/BOINC',
+                '~/Library/Caches/edu.berkeley.boinc',
+                '~/Library/Preferences/BOINC Manager Preferences',
+                '~/Library/Preferences/edu.berkeley.boinc.plist',
+                '/Library/Screen Savers/BOINCSaver.saver',
+              ]
 end

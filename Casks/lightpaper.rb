@@ -1,14 +1,13 @@
-cask :v1 => 'lightpaper' do
-  version '0.9.0'
-  sha256 'e90ad6d7052573a8048b65c590f9227f75a55690731ccf6986ded5982fc02afe'
+cask 'lightpaper' do
+  version '1.4.2'
+  sha256 '7e1f7f8304bd2b299e7973a34d55e9c5b6b57b9987f51c3e2200897150c06923'
 
-  # cl.ly is the official download host per the vendor homepage
-  url 'http://f.cl.ly/items/3q1Q3C472c3G2L2l2X0m/LightPaper_v0.0.9.dmg'
-  appcast 'http://links.clockworkengine.com/lp-mac-update-feed',
-          :sha256 => '88b4051a4255b9d82534f3fc502ecab5fa2d7df73a94ef563e02bec7848276c2'
+  # hockeyapp.net/api/2/apps/789cfa8846464727ae0fdb176ec8d3c8 was verified as official when first introduced to the cask
+  url 'https://rink.hockeyapp.net/api/2/apps/789cfa8846464727ae0fdb176ec8d3c8?format=zip'
+  appcast 'http://links.ashokgelal.com/lp-mac-update-feed',
+          checkpoint: 'a69ba60cca5db29c7f0fb60b4cc54ccc197aa53e4795a1f0af2209d6a1a726b6'
   name 'LightPaper'
-  homepage 'http://www.ashokgelal.com/lightpaper-for-mac/'
-  license :gratis
+  homepage 'http://lightpaper.42squares.in/'
 
   app 'LightPaper.app'
 end

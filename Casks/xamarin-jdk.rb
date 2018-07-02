@@ -1,16 +1,14 @@
-cask :v1 => 'xamarin-jdk' do
-  version '1.7.0_71'
-  sha256 '70a18547b529a111c4e5cf133532082e142908819b0d61e273c21dee86fcc87a'
+cask 'xamarin-jdk' do
+  version '8.101'
+  sha256 '680de8ddead3867fc34e7ff380f437c7ddb8dc75eb606186a3e8ae7e3b8c7fbc'
 
-  url "https://download.xamarin.com/Installer/MonoForAndroid/jdk-#{version.sub(%r{^\d+\.(\d+).*?_(.*)$},'\1u\2')}-macosx-x64.dmg"
+  url "https://download.xamarin.com/Installer/MonoForAndroid/jdk-#{version.major}u#{version.minor}-macosx-x64.dmg"
+  appcast 'https://static.xamarin.com/installer_assets/v3/Mac/Universal/InstallationManifest.xml',
+          checkpoint: '1c931d41a49d507e4519cc22d207a8e96601f9ae17d8497fb05f0183ba0ef26c'
   name 'Xamarin Java JDK'
-  appcast 'https://xamarin.com/installer_assets/v3/Mac/Universal/InstallationManifest.xml',
-          :sha256 => '79c309d6dbe6f08f1d022c9376a4678cc94f57be084007df90c5a12839b35cdd',
-          :format => :unknown
-  homepage 'https://xamarin.com/platform'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://www.xamarin.com/platform'
 
-  pkg "JDK #{version.split('.')[1]} Update #{version.split('_')[1]}.pkg"
+  pkg "JDK #{version.major} Update #{version.minor}.pkg"
 
-  uninstall :pkgutil => "com.oracle.jdk#{version.sub(%r{^\d+\.(\d+).*?_(.*)$},'\1u\2')}"
+  uninstall pkgutil: "com.oracle.jdk#{version.major}u#{version.minor}"
 end

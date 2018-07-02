@@ -1,25 +1,14 @@
-cask :v1 => 'linphone' do
-  version '3.8.5'
-  sha256 '250d6b0b8ca3fd5029185b479199ae47b5d8c57062007a2bbb864ca63034a5de'
+cask 'linphone' do
+  version '3.10.2'
+  sha256 '5e88df179c1a238b229a4b334f6c1a94ec0a2cf9dbb62c8328f05ebab93c6eef'
 
-  # gnu.org is the official download host per the vendor homepage
-  url "http://download-mirror.savannah.gnu.org/releases/linphone/#{version.sub(%r{\d+$},'')}x/macos/linphone-#{version}.pkg"
-  gpg "#{url}.sig",
-      :key_id => '3ecd52dee2f56985'
+  url "https://www.linphone.org/releases/macosx/linphone-#{version}.pkg"
+  appcast 'https://github.com/BelledonneCommunications/linphone/releases.atom',
+          checkpoint: 'cd2cb1b2738546c49e84067fcb58231e2e7ab3bfd510edbd9a87b0adb849d02f'
   name 'Linphone'
   homepage 'https://www.linphone.org/'
-  license :gpl
 
-  container :type => :xar
+  pkg "linphone-#{version}.pkg"
 
-  preflight do
-    system '/usr/bin/tar', '-xf', "#{staged_path}/linphone.pkg/Payload", '-C', staged_path
-  end
-
-  postflight do
-    system 'rm', '-rf', "#{staged_path}/linphone.pkg"
-    system 'rm', '-f', "#{staged_path}/Distribution"
-  end
-
-  app 'Linphone.app'
+  uninstall pkgutil: 'org.linphone.linphone'
 end

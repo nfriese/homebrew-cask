@@ -1,14 +1,12 @@
-cask :v1 => 'freefilesync' do
-  version '7.6'
-  sha256 '8785195124b1c1f33fd91513ab9cdef098ff9f9fafe0880eca187803838f528a'
+cask 'freefilesync' do
+  version '8.10'
+  sha256 '84497c6e395f1e9fa24ef9202bfadc81c00971caf8c6321f387c68ef877e0f25'
 
-  url "http://www.freefilesync.org/download/p4blb1h5my6tw5f/FreeFileSync_#{version}_Mac_OS_X_64-bit.zip",
-      :referer => 'http://www.freefilesync.org/download.php'
-
+  url "http://www.freefilesync.org/download/FreeFileSync_#{version}_macOS.zip",
+      user_agent: :fake
   name 'FreeFileSync'
-  homepage 'http://www.freefilesync.org'
-  license :gpl
+  homepage 'https://www.freefilesync.org/'
 
   app 'FreeFileSync.app'
-  app 'RealtimeSync.app'
+  app 'RealTimeSync.app'
 end

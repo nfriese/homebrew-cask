@@ -1,27 +1,27 @@
-cask :v1 => 'programmer-dvorak' do
+cask 'programmer-dvorak' do
   version '1.2b9'
   sha256 '36e51a0ee3ece99de99f2983e14beb415f74d9ae4726093cb60463cc206295e9'
 
-  url "http://www.kaufmann.no/downloads/macos/ProgrammerDvorak-#{version.gsub('.','_')}.pkg.zip"
+  url "https://www.kaufmann.no/downloads/macos/ProgrammerDvorak-#{version.dots_to_underscores}.pkg.zip"
+  appcast 'https://kaufmann.no/roland/dvorak',
+          checkpoint: '20a4400a036665bf6639dddca1726093c5c200d08c79e807e6a02918b6802005'
   name 'Programmer Dvorak'
-  homepage 'http://kaufmann.no/roland/dvorak/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'https://kaufmann.no/roland/dvorak/'
 
-  pkg 'Programmer Dvorak v1.2.pkg'
+  pkg "Programmer Dvorak v#{version.sub(%r{b.*}, '')}.pkg"
 
-  uninstall :pkgutil => 'com.apple.keyboardlayout.Programmer Dvorak',
-            :delete => [
-                        '/Library/Keyboard Layouts/Programmer Dvorak.bundle/',
-                        # todo these will not work because the glob will not be expanded
-                        '/Library/Caches/com.apple.IntlDataCache*',
-                        '/System/Library/Caches/com.apple.IntlDataCache.le*',
-                        '/private/var/folders/*/*/-Caches-/com.apple.IntlDataCache.le*',
-                       ]
-  if MacOS.release >= :mavericks
+  if MacOS.version >= :mavericks
     postflight do
       # clear the layout cache before new layouts are recognized
-      # todo this will not work because the glob will not be expanded
-      system '/bin/rm', '-f', '--', '/System/Library/Caches/com.apple.IntlDataCache.le*'
+      File.delete(*Dir.glob('/System/Library/Caches/com.apple.IntlDataCache.le*'))
     end
   end
+
+  uninstall pkgutil: 'com.apple.keyboardlayout.Programmer Dvorak',
+            delete:  [
+                       '/Library/Keyboard Layouts/Programmer Dvorak.bundle/',
+                       '/Library/Caches/com.apple.IntlDataCache*',
+                       '/System/Library/Caches/com.apple.IntlDataCache.le*',
+                       '/private/var/folders/*/*/-Caches-/com.apple.IntlDataCache.le*',
+                     ]
 end

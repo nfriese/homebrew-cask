@@ -1,14 +1,12 @@
-cask :v1 => 'hype' do
-  version '3.0.3-466'
-  sha256 '57285045b5742160af8c67e175669027f5ac632cf499e801d0788e36e1ed2b17'
+cask 'hype' do
+  version '3.6.2'
+  sha256 'aead4f966710b94d345dec797c5dd3903c0e2f12e7e6599493aaa063f165a7f5'
 
-  url "http://static.tumult.com/hype/download/Hype-#{version.sub(%r{^.*?-},'')}.app.zip"
-  name 'Hype'
+  url 'https://tumult.com/hype/download/Hype.zip'
   appcast 'https://tumult.com/hype/appcast_hype2.xml',
-          :sha256 => 'b8435a77bb13d39ddaecb92a1510786ceb135225e207aaaac91e7ef230d9edea'
-  homepage 'http://tumult.com/hype/'
-  license :commercial
-  tags :vendor => 'Tumult'
+          checkpoint: 'b04e4fed97ef930ccdd3c77a983799d0277932d0b6a847e1ffef7b311b206865'
+  name 'Tumult Hype'
+  homepage 'https://tumult.com/hype/'
 
-  app "Hype #{version.to_i}.app"
+  app "Hype #{version.major}.app"
 end

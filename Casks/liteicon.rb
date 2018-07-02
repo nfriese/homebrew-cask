@@ -1,13 +1,14 @@
-cask :v1 => 'liteicon' do
-  version '3.6.2'
-  sha256 'b9b12c02e69c38f983568a2231d0bd85690839736b1e5595a7d3358c2c7cf304'
+cask 'liteicon' do
+  version '3.7.1'
+  sha256 'b457521a698a0ef55cd3d9c044c82c28984eeebc20d8baf05a9c21b0fa1df432'
 
-  url "http://www.freemacsoft.net/downloads/LiteIcon_#{version}.zip"
-  appcast 'http://www.freemacsoft.net/liteicon/updates.xml',
-          :sha256 => 'cbaf744ac1473a475f81af1191005ba3307caa501e3a4541039ad836ce774631'
+  url "https://www.freemacsoft.net/downloads/LiteIcon_#{version}.zip"
+  appcast 'https://freemacsoft.net/liteicon/updates.xml',
+          checkpoint: 'd011430ae0b99504d66d4367803f4fd008a54c1c03f8ffc69407867eda22925b'
   name 'LiteIcon'
-  homepage 'http://www.freemacsoft.net/liteicon/'
-  license :gratis
+  homepage 'https://freemacsoft.net/liteicon/'
 
   app 'LiteIcon.app'
+
+  zap delete: '~/Library/Preferences/net.freemacsoft.LiteIcon.plist'
 end

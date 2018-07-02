@@ -1,11 +1,12 @@
-cask :v1 => 'mediaelch' do
-  version '2.2.2'
-  sha256 '0968767db15fe505ed39359566ef446badcdd4ccbd880b40dbd3b4f609a6e9aa'
+cask 'mediaelch' do
+  version '2.4.2'
+  sha256 'f82d4c157ef64e25529744fb962771ce678a9e2e3a94b18b3d398dfa5b8b9452'
 
   url "http://www.kvibes.de/releases/mediaelch/#{version}/MediaElch-#{version}.dmg"
+  appcast 'https://github.com/Komet/MediaElch/releases.atom',
+          checkpoint: 'ed0fc59d36c76777a9245ef278968e979e7f6ee0b35250a770fcbca34ed851e1'
   name 'MediaElch'
   homepage 'http://www.kvibes.de/en/mediaelch/'
-  license :gpl
 
   app 'MediaElch.app'
 end

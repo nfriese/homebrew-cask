@@ -1,17 +1,17 @@
-cask :v1 => 'qgis' do
-  version '2.12.0-1'
-  sha256 'b398f12904f7762ee74a1d9ddebd1fd44eef85007488320dcd4899aebefc6089'
+cask 'qgis' do
+  version '2.18.2-1'
+  sha256 '6bb3084e80fdb44ca6695093c9713a30423bd091af3a64ac5086a565703e350b'
 
   url "http://www.kyngchaos.com/files/software/qgis/QGIS-#{version}.dmg"
   name 'QGIS'
   homepage 'http://www.kyngchaos.com/software/qgis'
-  license :gpl
-  pkg 'Install QGIS.pkg'
 
-  uninstall :pkgutil => 'org.qgis.qgis-*'
+  depends_on cask: 'gdal-framework'
+  depends_on formula: 'homebrew/science/matplotlib'
 
-  depends_on :cask => 'gdal-framework'
-  depends_on :formula => 'matplotlib'
+  pkg '4 Install QGIS.pkg'
+
+  uninstall pkgutil: 'org.qgis.qgis-*'
 
   caveats <<-EOS.undent
     #{token} requires matplotlib in a specific location. Please run the following to finish install:

@@ -1,13 +1,12 @@
-cask :v1 => 'svnx' do
-  version '1.3.4'
-  sha256 'b687a0bc62de9f21b4c34dd94dbcfd282fd38184764e05e03e59dd5a19d1a3e8'
+cask 'svnx' do
+  version '2.0'
+  sha256 '6096b60f95e9029942a05d9fb55093df4a19ee35d63c37fc9e95a7f8f505a960'
 
-  url "https://svnx.googlecode.com/files/svnX%20#{version}.dmg"
-  name 'SvnX'
-  appcast 'https://svnx.googlecode.com/svn/wiki/svnX.rss.xml',
-          :sha256 => '13000f56917910f7fceb8c4763d6d69dc7d8cac5cc70b52dff83f1b8d9e2b975'
-  homepage 'https://code.google.com/p/svnx/'
-  license :gratis
+  url "https://subversion.assembla.com/svn/svnx/tags/svnX%20#{version}.dmg"
+  appcast 'https://subversion.assembla.com/svn/svnx/rss/svnX.rss.xml',
+          checkpoint: '78239a866c4285c3781e7b43ab25306a393bc4ce794ff0b2e36442834b307f32'
+  name 'svnX'
+  homepage 'https://subversion.assembla.com/svn/svnx/html/index.html'
 
   app 'svnX.app'
 end

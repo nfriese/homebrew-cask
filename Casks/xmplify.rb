@@ -1,23 +1,23 @@
-cask :v1 => 'xmplify' do
-  version :latest
-  sha256 :no_check
+cask 'xmplify' do
+  version '1.8.2'
+  sha256 '22c5e390530bd69d99778f5b78031741fd0b6c3dc6198506e1864a8f69928d0d'
 
-  url 'http://xmplifyapp.com/releases/Xmplify.dmg'
-  name 'Xmplify'
+  url "http://xmplifyapp.com/releases/Xmplify-#{version}.dmg"
   appcast 'http://xmplifyapp.com/appcast.xml',
-          :sha256 => 'c07056253091ae2c4955af290992f23042c356c3ac33fc23e86604f07349c83d'
+          checkpoint: '8cb723b831a7716b697172c7aea37ef7fa22d5f7044d260fc2dfac1ecffca222'
+  name 'Xmplify'
   homepage 'http://xmplifyapp.com/'
-  license :commercial
 
   app 'Xmplify.app'
 
-  uninstall :quit => 'au.com.moso.Xmplify'
-  zap :delete => [
-                   '~/Library/Caches/au.com.moso.Xmplify',
-                   '~/Library/Logs/Xmplify.log',
-                   '~/Library/Logs/Xmplify Quick Look Generator.log',
-                   '~/Library/Preferences/au.com.moso.Xmplify.plist',
-                   '~/Library/Preferences/au.com.moso.Xmplify.LSSharedFileList.plist',
-                   '~/Library/Saved Application State/au.com.moso.Xmplify.savedState'
-                 ]
+  uninstall quit: 'au.com.moso.Xmplify'
+
+  zap delete: [
+                '~/Library/Caches/au.com.moso.Xmplify',
+                '~/Library/Logs/Xmplify.log',
+                '~/Library/Logs/Xmplify Quick Look Generator.log',
+                '~/Library/Preferences/au.com.moso.Xmplify.plist',
+                '~/Library/Preferences/au.com.moso.Xmplify.LSSharedFileList.plist',
+                '~/Library/Saved Application State/au.com.moso.Xmplify.savedState',
+              ]
 end

@@ -1,13 +1,12 @@
-cask :v1 => 'curb' do
-  version '1.1.1'
-  sha256 '832750d2a75272763c5c2f681b11670584626c9d93bf993d6b3af96234558f68'
+cask 'curb' do
+  version '1.2.0'
+  sha256 '577a18a69e097d149cc1f2a81d1a898c85d2d6e421478b1fbd4dc0a6e3633bd6'
 
-  url "http://mrrsoftware.com/Downloads/Curb/Curb-#{version.gsub('.','_')}.zip"
-  appcast 'http://www.mrrsoftware.com/Downloads/Curb/CurbSoftwareUpdates.xml',
-          :sha256 => '2025c4fc40a80f7ca7fb4076deb357a133990ef0e9576ceb5a5dca5f03a7c500'
+  url "https://mrrsoftware.com/Downloads/Curb/Curb-#{version.dots_to_underscores}.zip"
+  appcast 'https://www.mrrsoftware.com/Downloads/Curb/CurbSoftwareUpdates.xml',
+          checkpoint: '0e9a73e958a6be2158c2df7580acc0222f50b71d9c620dc89e2be848324a251f'
   name 'Curb'
-  homepage 'http://mrrsoftware.com/curb'
-  license :gratis
+  homepage 'https://mrrsoftware.com/curb/'
 
   app 'Curb.app'
 end

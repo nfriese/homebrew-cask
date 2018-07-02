@@ -1,14 +1,12 @@
-cask :v1 => 'eclipse-java' do
-  version '4.5.1'
-  sha256 '557070cc428715ae32915d7eb72f1720ef01d3979b5b5d6dd3f627710970d6f5'
+cask 'eclipse-java' do
+  version '4.6.3,neon:3'
+  sha256 '886bc0d38a1cb9c3fab17d6f4a9f28266763894e690e1bcce9098ca65cbf1a77'
 
-  url 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/1/eclipse-java-mars-1-macosx-cocoa-x86_64.tar.gz&r=1'
-  name 'Eclipse'
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-java-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.tar.gz&r=1"
   name 'Eclipse IDE for Java Developers'
   homepage 'https://eclipse.org/'
-  license :eclipse
-  depends_on :macos => '>= :leopard'
-  depends_on :arch => :x86_64
+
+  depends_on macos: '>= :leopard'
 
   app 'Eclipse.app'
 end

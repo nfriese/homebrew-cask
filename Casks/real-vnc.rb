@@ -1,19 +1,30 @@
-cask :v1 => 'real-vnc' do
-  version '5.2.3'
-  sha256 '1e59895d261b8903e8cdc9e0419804289e62ac7834fd8efb62d678559198bd8e'
+cask 'real-vnc' do
+  version '6.0.2'
+  sha256 'fad0e8ea750399b6af627a9a4f31321bf7e6c4551c8ca9ed9ecbec1e5fa0b012'
 
-  url 'https://www.realvnc.com/download/binary/1713/'
+  url "https://www.realvnc.com/download/file/vnc.files/VNC-#{version}-MacOSX-x86_64.pkg"
   name 'Real VNC'
-  homepage 'https://www.realvnc.com'
-  license :freemium
+  homepage 'https://www.realvnc.com/'
 
-  container :type => :naked
-  preflight do
-    system '/bin/mv', '--', staged_path.join('1713'), staged_path.join("VNC-#{version}-MacOSX.pkg")
+  pkg "VNC-#{version}-MacOSX-x86_64.pkg"
+
+  uninstall_preflight do
+    system_command '/Applications/RealVNC/Uninstall VNC Server.app/Contents/Resources/uninstaller.sh', print_stderr: false, sudo: true
+    system_command '/Applications/RealVNC/Uninstall VNC Viewer.app/Contents/Resources/uninstaller.sh', print_stderr: false, sudo: true
   end
 
-  pkg "VNC-#{version}-MacOSX.pkg"
+  uninstall launchctl: [
+                         'com.realvnc.vncserver',
+                         'com.realvnc.vncserver.peruser',
+                       ],
+            pkgutil:   [
+                         'com.realvnc.vncserver.pkg',
+                         'com.realvnc.vncviewer.pkg',
+                       ]
 
-  uninstall :early_script => '/Applications/RealVNC/Advanced.localized/Uninstall VNC Server.app/Contents/Resources/uninstaller.sh',
-    :script => '/Applications/RealVNC/Advanced.localized/Uninstall VNC Viewer.app/Contents/Resources/uninstaller.sh'
+  zap delete: [
+                '~/Library/Saved Application State/com.realvnc.vnclicensewiz.savedState',
+                '~/Library/Saved Application State/com.realvnc.vncviewer.savedState',
+                '~/Library/Saved Application State/com.realvnc.vncserver.savedState',
+              ]
 end

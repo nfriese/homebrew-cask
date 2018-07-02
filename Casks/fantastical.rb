@@ -1,19 +1,18 @@
-cask :v1 => 'fantastical' do
-  version '2.1.4'
-  sha256 '7227933605ca7ef5618d8402ddff54cf19b83737a37d63c31d8c9ced2a6e76f4'
+cask 'fantastical' do
+  version '2.3.6'
+  sha256 '8ec9e80c720f9112c92521b4f133bc086403a7ec4a992d0780259db1c9d61f51'
 
   url "http://cdn.flexibits.com/Fantastical_#{version}.zip"
   appcast 'https://flexibits.com/fantastical/appcast2.php',
-          :sha256 => '19575279e36d7d8c6a2f1492075b34c1e43fe55f491f6ca2339a606e422dc9bb'
+          checkpoint: 'e0e74a37ec16479898a465138189750007c208ed37fc5ab1ca4ef0deee7fca54'
   name 'Fantastical'
   homepage 'https://flexibits.com/fantastical'
-  license :freemium
 
-  app 'Fantastical 2.app'
+  app "Fantastical #{version.major}.app"
 
   postflight do
     suppress_move_to_applications
   end
 
-  zap :delete => '~/Library/Preferences/com.flexibits.fantastical.plist'
+  zap delete: '~/Library/Preferences/com.flexibits.fantastical.plist'
 end

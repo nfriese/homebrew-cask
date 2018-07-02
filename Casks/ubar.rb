@@ -1,15 +1,21 @@
-cask :v1 => 'ubar' do
-  version '3.1.1'
-  sha256 'f5470e803ba75977099a9582a6d2eabd39aaad9baf6028bbc60b53a1c9bcc409'
+cask 'ubar' do
+  version '3.2.5'
+  sha256 '25d42b6770e2ae2debb4d570c33b5e661b71b4c7f24bda61016968cd66fe3638'
 
-  url "http://www.brawersoftware.com/downloads/ubar/ubar#{version.delete('.')}.zip"
-  appcast "http://brawersoftware.com/appcasts/feeds/ubar/ubar#{version.to_i}.xml",
-          :sha256 => 'd7b751ea9c7cbbf04f549bfc24c8be2ea2901e5e0157b25216f0789a52620d1f'
+  url "http://www.brawersoftware.com/downloads/ubar/ubar#{version.no_dots}.zip"
+  appcast "https://brawersoftware.com/appcasts/feeds/ubar/ubar#{version.major}.xml",
+          checkpoint: 'd09faa07d4adfc30ac31934981bf90162fc1c007cfc5affbf53b5118ccd79ca2'
   name 'uBar'
-  homepage 'http://brawersoftware.com/products/ubar'
-  license :commercial
+  homepage 'https://brawersoftware.com/products/ubar'
+
+  depends_on macos: '>= :mavericks'
 
   app 'uBar.app'
 
-  depends_on :macos => '>= :mavericks'
+  zap delete: [
+                '~/Library/Application Support/uBar',
+                '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/ca.brawer.ubar.sfl',
+                '~/Library/Caches/ca.brawer.uBar',
+                '~/Library/Preferences/ca.brawer.uBar.plist',
+              ]
 end

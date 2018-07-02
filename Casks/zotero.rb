@@ -1,11 +1,14 @@
-cask :v1 => 'zotero' do
-  version '4.0.28.8'
-  sha256 'c7e9aa8e8dbd4b447ec291ce0d0814740a3b1e42f9241fe0bdc0298ee8d7645e'
+cask 'zotero' do
+  version '4.0.29.15'
+  sha256 'a31fc874771ab9799ef3b23feb31a87dbed2d23b9c4c9cc44baad4294c34580d'
 
   url "https://download.zotero.org/standalone/#{version}/Zotero-#{version}.dmg"
+  appcast 'https://github.com/zotero/zotero/releases.atom',
+          checkpoint: '767016f135332e3bebb815ab21b4ec54babb84de4f3d59b789bc55208945ef18'
   name 'Zotero'
   homepage 'https://www.zotero.org/'
-  license :affero
+
+  auto_updates true
 
   app 'Zotero.app'
 end

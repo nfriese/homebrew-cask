@@ -1,20 +1,19 @@
-cask :v1 => 'air-video-server-hd' do
-  version '2.2.1u1'
-  sha256 'c682c27e4db10b1a6c83d7021027aefce589e6a3dac5782fec55108646c9b6e8'
+cask 'air-video-server-hd' do
+  version '2.2.4-beta2'
+  sha256 'f3578a21f537a04756c0f8af8f8a5ca845baa034e75477f766d78be92977607f'
 
-  # amazonaws.com is the official download host per the vendor homepage
+  # amazonaws.com/AirVideoHD was verified as official when first introduced to the cask
   url "https://s3.amazonaws.com/AirVideoHD/Download/Air+Video+Server+HD+#{version}.dmg"
   appcast 'https://s3.amazonaws.com/AirVideoHD/Download/appcast.xml',
-          :sha256 => 'a1f263353a12ba7faca84629fe6c9d22daf19de8c1c47570ea3e5e6d1f096201'
+          checkpoint: '5bac1596a893cf4ac74db81a40404b6a98a0b8d14c3163cee14882b3557673f8'
   name 'Air Video Server HD'
   homepage 'http://www.inmethod.com/airvideohd'
-  license :gratis
 
   app 'Air Video Server HD.app'
 
-  zap :delete => [
-                  '~/Library/Caches/com.inmethod.AirVideoServerHD',
-                  '~/Library/Logs/AirVideoServerHD',
-                  '~/Library/Preferences/com.inmethod.AirVideoServerHD.plist',
-                 ]
+  zap delete: [
+                '~/Library/Caches/com.inmethod.AirVideoServerHD',
+                '~/Library/Logs/AirVideoServerHD',
+                '~/Library/Preferences/com.inmethod.AirVideoServerHD.plist',
+              ]
 end

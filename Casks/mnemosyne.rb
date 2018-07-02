@@ -1,12 +1,13 @@
-cask :v1 => 'mnemosyne' do
-  version '2.3'
-  sha256 '094c4f6fb50de376a5190c3712b935089579717641ce90685aa48932bf0efa07'
+cask 'mnemosyne' do
+  version '2.4.1'
+  sha256 'c302624b8652f397c18fe6cbdaf520c9898dd97a68b8a02f90b96cbe5177df8d'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/mnemosyne-proj/Mnemosyne-#{version}-Mac.dmg"
+  # sourceforge.net/mnemosyne-proj was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/mnemosyne-proj/mnemosyne/mnemosyne-#{version}/Mnemosyne-#{version}.dmg"
+  appcast 'https://sourceforge.net/projects/mnemosyne-proj/rss?path=/mnemosyne',
+          checkpoint: '0b5bd0a344a750820cb2ebce55dae58341670b395546cac3f8b3440c0e4ba602'
   name 'Mnemosyne'
   homepage 'http://mnemosyne-proj.org/'
-  license :gpl
 
   app 'Mnemosyne.app'
 end

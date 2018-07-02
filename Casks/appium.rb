@@ -1,12 +1,16 @@
-cask :v1 => 'appium' do
-  version '1.4.8'
-  sha256 'c9dbebe84794dc17278a2229d873ae68405471ec24c6c71f3b8fbf94d4c7dba7'
+cask 'appium' do
+  version '1.5.3'
+  sha256 '1ab149ef4410d69ec757d435fd3613ab333ec69b09cdf6cf3800fe66731f71a4'
 
-  # bitbucket.org is the official download host per the vendor homepage
+  # bitbucket.org/appium/appium.app was verified as official when first introduced to the cask
   url "https://bitbucket.org/appium/appium.app/downloads/appium-#{version}.dmg"
   name 'Appium'
-  homepage 'http://appium.io'
-  license :apache
+  homepage 'https://appium.io/'
 
   app 'Appium.app'
+
+  zap delete: [
+                '~/Library/Preferences/com.appium.Appium.plist',
+                '~/Library/Caches/com.appium.Appium',
+              ]
 end

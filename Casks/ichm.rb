@@ -1,13 +1,11 @@
-cask :v1 => 'ichm' do
+cask 'ichm' do
   version '1.4.3'
   sha256 '2a00ab7fdfedd1dfea6a7a290af2eb791072812199e6d98cfdcafb9fd83e9697'
 
-  url "https://ichm.googlecode.com/files/iChm.#{version}.zip"
-  appcast 'http://www.robinlu.com/ichm/release.xml',
-          :sha256 => '57f3dcb6b02b8934d1eb63112843567946526920e34f2fd3869df9da8c78e6ac'
+  # code.google.com/ichm was verified as official when first introduced to the cask
+  url "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/ichm/iChm.#{version}.zip"
   name 'iChm'
-  homepage 'https://code.google.com/p/ichm/'
-  license :oss
+  homepage 'http://www.robinlu.com/ichm'
 
   app 'iChm.app'
 end

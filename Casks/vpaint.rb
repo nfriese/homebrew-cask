@@ -1,16 +1,15 @@
-cask :v1 => 'vpaint' do
-  version '1.5'
-  sha256 '3ebadd7518698cf83ce7cbf7d0736599ffc385bb4c00587fa1e957905b3050af'
+cask 'vpaint' do
+  version '1.6'
+  sha256 '7a762c78f48907346ac0c9320624910ed62e619d7db8678f2c46aac601209ce1'
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/dalboris/vpaint/releases/download/v#{version}/vpaint.dmg"
+  # github.com/dalboris/vpaint was verified as official when first introduced to the cask
+  url "https://github.com/dalboris/vpaint/releases/download/v#{version}/VPaint.#{version}.dmg"
   appcast 'https://github.com/dalboris/vpaint/releases.atom',
-          :sha256 => 'dcd653d5abc5f951abd9b9c1dd7bd72a26a27e5b057b1d392272942fab442d0b'
+          checkpoint: '4461c8f006a056c4f5e9211d54eb384cf317e7c7fd5c3d9ae835dc148d5fc802'
   name 'VPaint'
-  homepage 'http://www.vpaint.org/'
-  license :mit
+  homepage 'https://www.vpaint.org/'
 
   app 'vpaint.app'
 
-  zap :delete => '~/.config/vpaint'
+  zap delete: '~/.config/vpaint'
 end

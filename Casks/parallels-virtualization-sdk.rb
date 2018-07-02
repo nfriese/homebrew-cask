@@ -1,13 +1,12 @@
-cask :v1 => 'parallels-virtualization-sdk' do
-  version '11.1.0-32202'
-  sha256 'cfb7fff41a956a1583e6d4bb86eac09429c6373f98c894f8c6ada855e7d414e4'
+cask 'parallels-virtualization-sdk' do
+  version '12.1.3-41532'
+  sha256 '127d15d569b223701b56e70d1bb638c5db5208e894e7fbc61a11a7f383d91370'
 
-  url "http://download.parallels.com/desktop/v#{version[/^\w+/]}/#{version}/ParallelsVirtualizationSDK-#{version}-mac.dmg"
+  url "https://download.parallels.com/desktop/v#{version.major}/#{version}/ParallelsVirtualizationSDK-#{version}-mac.dmg"
   name 'Parallels Virtualization SDK'
   homepage 'https://www.parallels.com/products/desktop/download/'
-  license :gratis
 
   pkg 'Parallels Virtualization SDK.pkg'
 
-  uninstall :pkgutil => 'com.parallels.pkg.sdk'
+  uninstall pkgutil: 'com.parallels.pkg.sdk'
 end

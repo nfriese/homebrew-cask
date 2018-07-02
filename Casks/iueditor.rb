@@ -1,18 +1,18 @@
-cask :v1 => 'iueditor' do
-  version '1.1.1.6'
-  sha256 'f644d8e8a4f0aab420cf76ce724fb8e680e4f592de1bdad54399f938342fa641'
+cask 'iueditor' do
+  version '2.0.5.13'
+  sha256 'b50a135f48d286e6fb7ec79c534155e524c18663803a88b04ae642f95d7df162'
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://iueditor.s3.amazonaws.com/Release/IUEditorV#{version}.zip"
-  name 'IUEditor'
-  homepage 'http://www.iueditor.org'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
-  tags :vendor => 'JDLab'
+  url "https://cdn.iueditor.org/release/IUEditorV#{version}.pkg"
+  name 'JDLab IUEditor'
+  homepage 'http://www.iueditor.org/'
 
-  app 'IUEditor.app'
+  pkg "IUEditorV#{version}.pkg"
 
-  zap :delete => [
-                  '~/Library/Preferences/org.jdlab.IUEditor.LSSharedFileList.plist',
-                  '~/Library/Preferences/org.jdlab.IUEditor.plist',
-                 ]
+  uninstall delete:  '/Applications/IUEditor.app',
+            pkgutil: 'org.jdlab.IUEditor'
+
+  zap delete: [
+                '~/Library/Preferences/org.jdlab.IUEditor.LSSharedFileList.plist',
+                '~/Library/Preferences/org.jdlab.IUEditor.plist',
+              ]
 end

@@ -1,11 +1,10 @@
-cask :v1 => 'firestormos' do
-  version '4.6.9.42974'
-  sha256 '423c7f6f0d262153fa655fd8a39b6d56c22744c57dfc2d7972bf4bf94d612459'
+cask 'firestormos' do
+  version '5.0.1.52150'
+  sha256 'fd9d432b170485368931944b30798259714eb9bceaa9b10cea48dbcf66036c03'
 
-  url "http://downloads.firestormviewer.org/mac/Phoenix-FirestormOS-Releasex64-#{version.gsub('.','-')}.dmg"
+  url "https://downloads.firestormviewer.org/mac/Phoenix-FirestormOS-Releasex64-#{version.dots_to_hyphens}.dmg"
   name 'Phoenix Firestorm viewer for Second Life'
-  homepage 'http://www.firestormviewer.org'
-  license :oss
+  homepage 'http://www.firestormviewer.org/'
 
   app 'FirestormOS-Releasex64.app'
 

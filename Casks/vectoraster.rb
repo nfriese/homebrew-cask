@@ -1,16 +1,16 @@
-cask :v1 => 'vectoraster' do
-  version '6.2.2'
-  sha256 'd0a6d68c403c34056586281ceb925018b6b4673c2a8fe4ad475f00fcf1ba981b'
+cask 'vectoraster' do
+  version '7.0.9'
+  sha256 '3c38d964266f47d148fbe1b0dac58fa75b44c1562420555a07d7185db00a2244'
 
-  url "http://www.lostminds.com/downloads/dl.php?vectoraster#{version.to_i}.zip"
+  url "https://www.lostminds.com/downloads/dl.php?vectoraster#{version.major}.zip"
   name 'Vectoraster'
-  homepage 'http://www.lostminds.com/content/product.php?vectoraster6'
-  license :commercial
-  app "Vectoraster #{version.to_i}/Vectoraster.app"
+  homepage 'https://www.lostminds.com/content/product.php?vectoraster6'
 
-  zap :delete => [
-                  '~/Library/Caches/com.lostminds.Vectoraster',
-                  '~/Library/Preferences/com.lostminds.Vectoraster.plist',
-                  '~/Library/Application Support/Vectoraster',
-                 ]
+  app "Vectoraster #{version.major}/Vectoraster.app"
+
+  zap delete: [
+                '~/Library/Caches/com.lostminds.Vectoraster',
+                '~/Library/Preferences/com.lostminds.Vectoraster.plist',
+                '~/Library/Application Support/Vectoraster',
+              ]
 end

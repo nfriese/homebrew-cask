@@ -1,17 +1,27 @@
-cask :v1 => 'intellij-idea' do
-  version '15.0.1'
-  sha256 'b253782bf1a10763c4fd84bffce0e28d855da8eb6499a91647860cb443695fdd'
+cask 'intellij-idea' do
+  version '2017.1,171.3780.107'
+  sha256 'f37b3b63276d9e0cc9784506ea3257cbf6b843095546f5afef07e08a04dc74c0'
 
-  url "https://download.jetbrains.com/idea/ideaIU-#{version}-custom-jdk-bundled.dmg"
-  name 'IntelliJ IDEA'
+  url "https://download.jetbrains.com/idea/ideaIU-#{version.before_comma}.dmg"
+  appcast 'https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=release',
+          checkpoint: '82be45bb011f2a5160743ff33da22611d616aac156305db42e34c7fdd774d7f2'
+  name 'IntelliJ IDEA Ultimate'
   homepage 'https://www.jetbrains.com/idea/'
-  license :commercial
 
-  app 'IntelliJ IDEA 15.app'
+  auto_updates true
 
-  zap :delete => [
-                  '~/Library/Application Support/IntelliJIdea15',
-                  '~/Library/Preferences/IntelliJIdea15',
-                  '~/Library/Preferences/com.jetbrains.intellij.plist',
-                 ]
+  app 'IntelliJ IDEA.app'
+
+  uninstall_postflight do
+    ENV['PATH'].split(File::PATH_SEPARATOR).map { |path| File.join(path, 'idea') }.each { |path| File.delete(path) if File.exist?(path) }
+  end
+
+  zap delete: [
+                "~/Library/Caches/IntelliJIdea#{version.major_minor}",
+                "~/Library/Logs/IntelliJIdea#{version.major_minor}",
+                "~/Library/Application Support/IntelliJIdea#{version.major_minor}",
+                "~/Library/Preferences/IntelliJIdea#{version.major_minor}",
+                '~/Library/Preferences/com.jetbrains.intellij.plist',
+                '~/Library/Saved Application State/com.jetbrains.intellij.savedState',
+              ]
 end

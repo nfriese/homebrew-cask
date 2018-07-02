@@ -1,21 +1,28 @@
-cask :v1 => 'webstorm' do
-  version '11.0.1'
-  sha256 'f40b492e52ea0778b31840e618ca9639b84da2c276a56fd19d8325ede4764542'
+cask 'webstorm' do
+  version '2017.1,171.3780.79'
+  sha256 'bab8eb85036315d8737cc16749f159ffbc2fdc4ce358ae1659735e3776693b27'
 
-  url "https://download.jetbrains.com/webstorm/WebStorm-#{version}-custom-jdk-bundled.dmg"
+  url "https://download.jetbrains.com/webstorm/WebStorm-#{version.before_comma}.dmg"
+  appcast 'https://data.services.jetbrains.com/products/releases?code=WS&latest=true&type=release',
+          checkpoint: 'ca44e04047a7d441042eff86741c7d94b213954c0e8347b767dbbadd249779e5'
   name 'WebStorm'
-  homepage 'http://www.jetbrains.com/webstorm/'
-  license :commercial
+  homepage 'https://www.jetbrains.com/webstorm/'
+
+  auto_updates true
+  conflicts_with cask: 'webstorm-eap'
 
   app 'WebStorm.app'
-  binary 'WebStorm.app/Contents/MacOS/webstorm'
 
-  zap :delete => [
-                  '~/.WebStorm11',
-                  '~/Library/Preferences/com.jetbrains.webstorm.plist',
-                  '~/Library/Preferences/WebStorm11',
-                  '~/Library/Application Support/WebStorm11',
-                  '~/Library/Caches/WebStorm11',
-                  '~/Library/Logs/WebStorm11',
-                 ]
+  uninstall_postflight do
+    ENV['PATH'].split(File::PATH_SEPARATOR).map { |path| File.join(path, 'wstorm') }.each { |path| File.delete(path) if File.exist?(path) }
+  end
+
+  zap delete: [
+                "~/Library/Application Support/WebStorm#{version.major_minor}",
+                "~/Library/Caches/WebStorm#{version.major_minor}",
+                "~/Library/Logs/WebStorm#{version.major_minor}",
+                "~/Library/Preferences/WebStorm#{version.major_minor}",
+                '~/Library/Preferences/jetbrains.webstorm.aaac0500.plist',
+                '~/Library/Saved Application State/com.jetbrains.WebStorm.savedState',
+              ]
 end

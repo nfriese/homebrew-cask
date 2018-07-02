@@ -1,13 +1,12 @@
-cask :v1 => 'polycom-realpresence-desktop' do
-  version '3.3_50871'
-  sha256 '75cc90740112f055ae85955f16a9da255bed60819e00a6343d42648d155b8c0c'
+cask 'polycom-realpresence-desktop' do
+  version '3.5.1_61068'
+  sha256 '166159efe603d5df950e46ac72aa245d1fa4a21a78df811d901f44de5b56ef4c'
 
-  url "http://downloads.polycom.com/video/realpresence_desktop/RPDMac-release_#{version}.dmg"
+  url "https://downloads.polycom.com/video/realpresence_desktop/RPDMac-release_#{version}.dmg"
   name 'Polycom RealPresence Desktop'
   homepage 'http://www.polycom.com/products-services/hd-telepresence-video-conferencing/realpresence-desktop/realpresence-desktop.html'
-  license :commercial
 
   pkg 'RealPresenceDesktop.pkg'
 
-  uninstall :pkgutil => 'com.polycom.RealPresenceDesktop'
+  uninstall pkgutil: 'com.polycom.RealPresenceDesktop'
 end

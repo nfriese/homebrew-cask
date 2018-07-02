@@ -1,27 +1,24 @@
-cask :v1 => 'golly' do
-  if MacOS.release <= :mountain_lion
+cask 'golly' do
+  if MacOS.version <= :mountain_lion
     version '2.6'
     sha256 '6fee35e8e4f63ee2c1b0913b7e8009b2548c4e4469050f9c31791900e1e97f16'
 
-    url "http://downloads.sourceforge.net/project/golly/golly/golly-#{version}/golly-#{version}-mac106.zip"
+    url "https://downloads.sourceforge.net/golly/golly/golly-#{version}/golly-#{version}-mac106.zip"
 
     app "golly-#{version}-mac106/Golly.app"
     binary "golly-#{version}-mac106/bgolly"
   else
-    version '2.7'
-    sha256 'ebcbea756ffaafb1b2e122ebe81781cbbe3f8245ae36387437653b8e9c8b8272'
+    version '2.8'
+    sha256 'be6dff40918b76d985d79d8cfe1a48fcd23ab0df3f3991d82940c1365b06c689'
 
-    url "http://downloads.sourceforge.net/project/golly/golly/golly-#{version}/golly-#{version}-mac109.zip"
+    url "https://downloads.sourceforge.net/golly/golly/golly-#{version}/golly-#{version}-mac.zip"
+    appcast 'https://sourceforge.net/projects/golly/rss?path=/golly',
+            checkpoint: '7b50b7456e8709c9bee37c6808759288d61714c392eee7233660fd66d8c66bf6'
 
-    app "golly-#{version}-mac109/Golly.app"
-    binary "golly-#{version}-mac109/bgolly"
+    app "golly-#{version}-mac/Golly.app"
+    binary "golly-#{version}-mac/bgolly"
   end
 
   name 'Golly'
   homepage 'http://golly.sourceforge.net/'
-  license :gpl
-
-  caveats do
-    files_in_usr_local
-  end
 end

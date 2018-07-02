@@ -1,12 +1,13 @@
-cask :v1 => 'avidemux' do
-  version '2.6.8'
-  sha256 '2478fbdf6e7bfc32dd98a53bb95e6a7d217d294d446910942c4904bf2094b90a'
+cask 'avidemux' do
+  version '2.6.19'
+  sha256 '606e239b7833fdb4e86422979189c31942ced034f8d8fd2cde0ee4cff7de13eb'
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/avidemux/Avidemux_#{version}_ml_64bits.dmg"
+  # sourceforge.net/avidemux was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/avidemux/avidemux/#{version}/Avidemux_#{version}_Sierra_64Bits_Qt5.dmg"
+  appcast 'https://sourceforge.net/projects/avidemux/rss?path=/avidemux',
+          checkpoint: '48d5f951633deea796cee416eec784b6f338923abba559a74bed937cca40e5dd'
   name 'Avidemux'
-  homepage 'http://www.avidemux.org/'
-  license :gpl
+  homepage 'https://www.avidemux.org/'
 
-  app 'Avidemux2.6.app'
+  app "Avidemux#{version.major_minor}.app"
 end

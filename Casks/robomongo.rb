@@ -1,18 +1,17 @@
-cask :v1 => 'robomongo' do
-  version '0.8.5'
-  sha256 'fdf9fb0bb94accf92217de6424a1760cf4ed4ab1dbda929b7892b5ddde4074e0'
+cask 'robomongo' do
+  version '1.0.0-rc1,496f5c2'
+  sha256 '7b2e0ee1effb36d548945fe668c2e584c1e2dde1e3b7786f2ee134dc419ed1ef'
 
-  url "http://robomongo.org/files/mac/Robomongo-#{version}-x86_64.dmg"
+  url "https://download.robomongo.org/#{version.before_comma}/osx/robomongo-#{version.before_comma}-darwin-x86_64-#{version.after_comma}.dmg"
   name 'Robomongo'
-  homepage 'http://robomongo.org'
-  license :gpl
+  homepage 'https://robomongo.org/'
 
   app 'Robomongo.app'
 
-  uninstall :quit => 'Robomongo'
+  uninstall quit: 'Robomongo'
 
-  zap :delete => [
-    '~/.config/robomongo',
-    '~/Library/Saved Application State/Robomongo.savedState'
-  ]
+  zap delete: [
+                '~/.config/robomongo',
+                '~/Library/Saved Application State/Robomongo.savedState',
+              ]
 end

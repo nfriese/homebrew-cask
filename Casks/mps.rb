@@ -1,28 +1,22 @@
-cask :v1 => 'mps' do
-  version '3.2.3'
-  sha256 'cf6e842fbfe28035f2ab6fc4c39e97d82609ca72d5d6ffc486026772b5ddf35e'
+cask 'mps' do
+  version '2017.1,171.1065'
+  sha256 '989ffc53e63bbf4fe6239c5253e6555f9ec7490b4861cc95c0043e0733491f96'
 
-  url "http://download-cf.jetbrains.com/mps/#{version.tr('.','')[0,2]}/MPS-#{version}-macos.dmg"
-  name 'MPS'
+  url "https://download.jetbrains.com/mps/#{version.before_comma}/MPS-#{version.before_comma}-macos-jdk-bundled.dmg"
+  appcast 'https://data.services.jetbrains.com/products/releases?code=MPS&latest=true&type=release',
+          checkpoint: '9d5a7ebd2a13e2ff6c63a3f09912769640814787e079419b902e5cbd7e32d2b7'
   name 'JetBrains MPS'
-  homepage 'https://www.jetbrains.com/mps'
-  license :apache
+  homepage 'https://www.jetbrains.com/mps/'
 
-  app "MPS #{version[0,3]}.app"
+  conflicts_with cask: 'mps-eap'
 
-  zap :delete => [
-                  "~/Library/Application Support/MPS#{version.tr('.','')[0,2]}",
-                  "~/Library/Preferences/MPS#{version.tr('.','')[0,2]}",
-                 ]
+  app "MPS #{version.major_minor}.app"
 
-  caveats <<-EOS.undent
-    #{token} requires Java 6 like any other IntelliJ-based IDE.
-    You can install it with
-
-      brew cask install caskroom/homebrew-versions/java6
-
-    The vendor (JetBrains) doesn't support newer versions of Java (yet)
-    due to several critical issues, see details at
-    https://intellij-support.jetbrains.com/entries/27854363
-  EOS
+  zap delete: [
+                "~/MPSSamples.#{version}",
+                "~/Library/Application Support/MPS#{version.major_minor.no_dots}",
+                "~/Library/Preferences/MPS#{version.major_minor.no_dots}",
+                "~/Library/Caches/MPS#{version.major_minor.no_dots}",
+                "~/Library/Logs/MPS#{version.major_minor.no_dots}",
+              ]
 end

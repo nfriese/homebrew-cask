@@ -1,29 +1,33 @@
-cask :v1 => 'sage' do
-  if MacOS.release <= :lion
-    version '6.6'
-    sha256 'bdd740d8c92df5467269787aaf00e8cd0b2430cead259a4f15ef04e92b274282'
-    # mit.edu is an official download host per the vendor download page
-    url "http://mirrors.mit.edu/sage/osx/intel/sage-#{version}-x86_64-Darwin-OSX_10.7_x86_64-app.dmg"
+cask 'sage' do
+  if MacOS.version <= :lion
+    version '7.2'
+    sha256 'f88e0686ae8fe31f2684163a57bea938d93f732842cab7c263ee6e4cdeb271cc'
+    # mit.edu/sage was verified as official when first introduced to the cask
+    url "http://mirrors.mit.edu/sage/osx/intel/sage-#{version}-OSX_10.7.5-x86_64.app.dmg"
+  elsif MacOS.version <= :mavericks
+    version '7.2'
+    sha256 'a4cd5c6f3207cd9c429642bb58a6310ba05e6da9fddbf36dc1aa5e47c5904c96'
+    # mit.edu/sage was verified as official when first introduced to the cask
+    url "http://mirrors.mit.edu/sage/osx/intel/sage-#{version}-OSX_10.9.5-x86_64.app.dmg"
   else
-    version '6.9'
-    sha256 '03112bf747cf807f308d518f34c1982ca3c9599e65bf64a6782efc78136198a4'
-    # mit.edu is an official download host per the vendor download page
-    url "http://mirrors.mit.edu/sage/osx/intel/sage-#{version}-x86_64-Darwin-OSX_10.10_x86_64-app.dmg"
+    version '7.6'
+    sha256 'dbd5e79825ad505dbf852c8c794cd604a3bd560151fb3ec08a9df7f9c5626ab2'
+    # mit.edu/sage was verified as official when first introduced to the cask
+    url "http://mirrors.mit.edu/sage/osx/intel/sage-#{version}-OSX_10.12.3-x86_64.app.dmg"
   end
 
   name 'Sage'
-  homepage 'http://www.sagemath.org/'
-  license :gpl
+  homepage 'https://www.sagemath.org/'
 
-  app "Sage-#{version}.app"
-  binary "Sage-#{version}.app/Contents/Resources/sage/sage"
+  depends_on macos: '>= :lion'
 
-  zap :delete => [
-                  '~/.sage',
-                  '~/Library/Logs/sage.log',
-                 ]
+  app "SageMath-#{version}.app"
+  binary "#{appdir}/SageMath-#{version}.app/Contents/Resources/sage/sage"
 
-  caveats do
-    files_in_usr_local
-  end
+  zap delete: [
+                '~/.sage',
+                '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.sagemath.sage.sfl',
+                '~/Library/Logs/sage.log',
+                '~/Library/Preferences/org.sagemath.Sage.plist',
+              ]
 end

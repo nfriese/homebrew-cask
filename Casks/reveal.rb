@@ -1,12 +1,10 @@
-cask :v1 => 'reveal' do
-  version '1.6.2'
-  sha256 'e245d592e2397e7fd056ba47ac4b197335081302be98ee17d46249dbbcd3fa5c'
+cask 'reveal' do
+  version '7'
+  sha256 '37ff8503cbe98b1c4a5fe3a38b8db7eca56a5ce631f7a0fabcad80552a7e7171'
 
-  url "http://download.revealapp.com/Reveal.app-#{version}.zip"
-  appcast 'http://download.revealapp.com/reveal-release.xml'
+  url "https://download.revealapp.com/Reveal.app-#{version}.zip"
   name 'Reveal'
-  homepage 'http://revealapp.com/'
-  license :commercial
+  homepage 'https://revealapp.com/'
 
   app 'Reveal.app'
 end

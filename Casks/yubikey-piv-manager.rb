@@ -1,13 +1,14 @@
-cask :v1 => 'yubikey-piv-manager' do
-  version '1.1.1'
-  sha256 'b21953f5b992aef9295d91f8a534dedd19fcc2a8caf8501c4e3125d82eb3bfbc'
+cask 'yubikey-piv-manager' do
+  version '1.4.1'
+  sha256 '67b934c368603d1ebc6908831487a2db1b94066dc1dbe2b2204c0e87e4b9a3a8'
 
   url "https://developers.yubico.com/yubikey-piv-manager/Releases/yubikey-piv-manager-#{version}-mac.pkg"
+  appcast 'https://developers.yubico.com/yubikey-piv-manager/Release_Notes.html',
+          checkpoint: '62355a665f5869a84d67f8ed69596f8621730fe9af4a76bbd590f701db9d2343'
   name 'YubiKey PIV Manager'
   homepage 'https://developers.yubico.com/yubikey-piv-manager/'
-  license :gpl
 
   pkg "yubikey-piv-manager-#{version}-mac.pkg"
 
-  uninstall :pkgutil => 'com.yubico.pkg.YubiKeyPIVManager'
+  uninstall pkgutil: 'com.yubico.pkg.YubiKeyPIVManager'
 end

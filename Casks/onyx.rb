@@ -1,47 +1,19 @@
-cask :v1 => 'onyx' do
-  version :latest
-  sha256 :no_check
-
-  if MacOS.release == :tiger
-    url 'http://www.titanium.free.fr/download/104/OnyX.dmg'
-  elsif MacOS.release == :leopard
-    url 'http://www.titanium.free.fr/download/105/OnyX.dmg'
-  elsif MacOS.release == :snow_leopard
-    url 'http://www.titanium.free.fr/download/106/OnyX.dmg'
-  elsif MacOS.release == :lion
-    url 'http://www.titanium.free.fr/download/107/OnyX.dmg'
-  elsif MacOS.release == :mountain_lion
-    url 'http://www.titanium.free.fr/download/108/OnyX.dmg'
-  elsif MacOS.release == :mavericks
-    url 'http://www.titanium.free.fr/download/109/OnyX.dmg'
-  elsif MacOS.release == :yosemite
-    url 'http://www.titanium.free.fr/download/1010/OnyX.dmg'
-  elsif MacOS.release == :el_capitan
-    url 'http://joel.barriere.pagesperso-orange.fr/download/1011/OnyX.dmg'
+cask 'onyx' do
+  if MacOS.version == :el_capitan
+    version '3.1.8'
+    sha256 '9d46d09346666a4dcecd0c92eb1bebd76c76f145744926ebda594831d45724ab'
   else
-    # Unusual case: there is no fall-through.  The software will stop
-    # working, or is dangerous to run, on the next OS X release.
+    version '3.2.4'
+    sha256 '068b9d4df199727ecf750879b943efc9b5813aab318cca05f937be7f9a075d81'
   end
+
+  url "https://www.titanium-software.fr/download/#{MacOS.version.to_s.delete('.')}/OnyX.dmg"
+  appcast 'http://www.titanium-software.fr/en/release_onyx.html',
+          checkpoint: '91046a29eec018e16d37414affd7d2fd898e650934f51918324b3e163ef1978f'
   name 'OnyX'
-  homepage 'http://www.titanium.free.fr/onyx.html'
-  license :gratis
+  homepage 'https://www.titanium-software.fr/en/onyx.html'
+
+  depends_on macos: '>= :el_capitan'
 
   app 'OnyX.app'
-
-  depends_on :macos => %w{
-                          :tiger
-                          :leopard
-                          :snow_leopard
-                          :lion
-                          :mountain_lion
-                          :mavericks
-                          :yosemite
-                          :el_capitan
-                         }
-
-  caveats do
-    if [:leopard, :tiger].include?(MacOS.release.to_sym)
-      puts 'OnyX only runs from an Administrator account on this version of OS X.'
-    end
-  end
 end

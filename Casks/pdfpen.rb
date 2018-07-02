@@ -1,13 +1,12 @@
-cask :v1 => 'pdfpen' do
-  version :latest
-  sha256 :no_check
+cask 'pdfpen' do
+  version '834.1,1491271097'
+  sha256 '1a7c2b7ceedcf30dedf8bca6326842f17fa66edf2552030138f82d98ed2b443d'
 
-  url 'http://dl.smilesoftware.com/com.smileonmymac.PDFpen/PDFpen.zip'
+  url "https://dl.smilesoftware.com/com.smileonmymac.PDFpen/#{version.before_comma}/#{version.after_comma}/PDFpen-#{version.before_comma}.zip"
+  appcast 'https://updates.smilesoftware.com/com.smileonmymac.PDFpen.xml',
+          checkpoint: 'b11aad2c6c88f13c85b47081770173da679040e2d02ad9cfbcee44a348f18256'
   name 'PDFpen'
-  appcast 'http://updates.smilesoftware.com/com.smileonmymac.PDFpen.xml',
-          :sha256 => '20c1ab602462b7fc0d5b4cbd555cacf127b69a07a737579598ebcbc0f5b21319'
-  homepage 'http://smilesoftware.com/PDFpen/'
-  license :commercial
+  homepage 'https://smilesoftware.com/PDFpen'
 
   app 'PDFpen.app'
 end

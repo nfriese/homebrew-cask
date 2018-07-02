@@ -1,14 +1,13 @@
-cask :v1 => 'crashplan' do
-  version '4.4.1'
-  sha256 'eba9dbf8511f1195b2837701cdb094d7ac3b03bd36c2a3252392be63ae08cb21'
+cask 'crashplan' do
+  version '4.8.0'
+  sha256 '42103d8a151dd36cdf3a96ce541abc8e9d47a25f9e050d9044a3607332295f3a'
 
-  url "http://download.crashplan.com/installs/mac/install/CrashPlan/CrashPlan_#{version}_Mac.dmg"
+  url "https://download.crashplan.com/installs/mac/install/CrashPlan/CrashPlan_#{version}_Mac.dmg"
   name 'CrashPlan'
-  homepage 'https://www.code42.com/crashplan/'
-  license :gratis
+  homepage 'https://www.crashplan.com/'
 
   pkg 'Install CrashPlan.pkg'
 
-  uninstall :script  => 'Uninstall.app/Contents/Resources/uninstall.sh',
-            :pkgutil => 'com.crashplan.app.pkg'
+  uninstall script:  'Uninstall.app/Contents/Resources/uninstall.sh',
+            pkgutil: 'com.crashplan.app.pkg'
 end

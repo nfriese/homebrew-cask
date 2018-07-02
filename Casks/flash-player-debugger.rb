@@ -1,19 +1,19 @@
-cask :v1 => 'flash-player-debugger' do
-  version '19.0.0.245'
-  sha256 '4bc5047aa96fc984f6927c12a196ac771d1dc45be50e5c8f7753477b23256ec5'
+cask 'flash-player-debugger' do
+  version '25.0.0.127'
+  sha256 '9fd122dd974cf8de59d3812698f5b913984557e22e33644e851bbd14b366ba72'
 
-  # macromedia.com is the official download host per the vendor homepage
-  url "https://fpdownload.macromedia.com/pub/flashplayer/updaters/#{version.to_i}/flashplayer_#{version.to_i}_sa_debug.dmg"
-  name 'Adobe Flash Player Debugger'
-  homepage 'https://www.adobe.com/support/flashplayer/downloads.html'
-  license :gratis
-  tags :vendor => 'Adobe'
+  # macromedia.com was verified as official when first introduced to the cask
+  url "https://fpdownload.macromedia.com/pub/flashplayer/updaters/#{version.major}/flashplayer_#{version.major}_sa_debug.dmg"
+  appcast 'http://fpdownload2.macromedia.com/get/flashplayer/update/current/xml/version_en_mac_pep.xml',
+          checkpoint: '2b1fead2874fc8798351dec188583692bc626fdfd45585b0e4d40edbae70ceb1'
+  name 'Adobe Flash Player projector content debugger'
+  homepage 'https://www.adobe.com/support/flashplayer/debug_downloads.html'
 
   # Renamed to avoid conflict with flash-player.
-  app 'Flash Player.app', :target => 'Flash Player Debugger.app'
+  app 'Flash Player.app', target: 'Flash Player Debugger.app'
 
-  zap :delete => [
-                  '~/Library/Caches/Adobe/Flash Player',
-                  '~/Library/Logs/FlashPlayerInstallManager.log',
-                 ]
+  zap delete: [
+                '~/Library/Caches/Adobe/Flash Player',
+                '~/Library/Logs/FlashPlayerInstallManager.log',
+              ]
 end

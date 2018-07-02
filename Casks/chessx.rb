@@ -1,12 +1,14 @@
-cask :v1 => 'chessx' do
-  version '1.3.2'
-  sha256 '7719eaf448d0b974d524fb3c180fb748b18494afe9a36c34b17ea138dbdad00f'
-  url "http://downloads.sourceforge.net/project/chessx/chessx/#{version}/chessx-#{version}.dmg"
+cask 'chessx' do
+  version '1.4.4'
+  sha256 '1304632fa6f6cb6922882de477aab002f2793c18b99718dde86eb08d94432ca2'
 
+  url "https://downloads.sourceforge.net/chessx/chessx/#{version}/chessx-#{version}.dmg"
+  appcast 'https://sourceforge.net/projects/chessx/rss?path=/chessx',
+          checkpoint: 'a48aa2be2eb2885edaa179620b9cdfc6d8b33224d1db078d3ccea79b7615f798'
   name 'ChessX'
   homepage 'http://chessx.sourceforge.net/'
-  license :gpl
 
   pkg 'chessx-installer.mpkg'
-  uninstall :pkgutil => 'net.sourceforge.chessx'
+
+  uninstall pkgutil: 'net.sourceforge.chessx'
 end

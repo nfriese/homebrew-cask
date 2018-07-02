@@ -1,14 +1,13 @@
-cask :v1 => 'rekordbox' do
-  version '3.2.2'
-  sha256 'f12cafb0764177bafbb267342c3bd367572c42cc9e340081a0e84ef2bf7ed433'
+cask 'rekordbox' do
+  version '4.2.5'
+  sha256 'f178f33cc733944abcdbfe8223e43668eb43b0f73f542397421fa37f201d74fa'
 
-  url "http://rekordbox.com/_app/files/Install_rekordbox_#{version.gsub('.','_')}.pkg.zip"
+  url "https://rekordbox.com/_app/files/Install_rekordbox_#{version.dots_to_underscores}.pkg.zip"
   name 'rekordbox'
-  homepage 'http://rekordbox.com/en/'
-  license :closed
+  homepage 'https://rekordbox.com/en/'
 
-  pkg "Install_rekordbox_#{version.gsub('.','_')}.pkg"
+  pkg "Install_rekordbox_#{version.dots_to_underscores}.pkg"
 
-  uninstall :pkgutil => 'com.pioneer.rekordbox.*',
-            :delete  => '/Applications/rekordbox 3/'
+  uninstall pkgutil: 'com.pioneer.rekordbox.*',
+            delete:  '/Applications/rekordbox 4/'
 end

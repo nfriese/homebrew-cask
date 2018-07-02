@@ -1,11 +1,11 @@
-cask :v1 => 'airdroid' do
-  version '3.2.1'
-  sha256 '6384f670d374f40e0559ad962bf7992ec310f974bdab469ed021bae69e932a59'
+cask 'airdroid' do
+  version '3.4.1.0'
+  sha256 '9691ab3e83c4167f76dcf5c9b6b8993f425f34ff4fd317f3b632168ebcfc4515'
 
-  url "http://dl.airdroid.com/AirDroid_Desktop_Client_#{version}.dmg"
+  # s3.amazonaws.com/dl.airdroid.com was verified as official when first introduced to the cask
+  url "https://s3.amazonaws.com/dl.airdroid.com/AirDroid_Desktop_Client_#{version}.dmg"
   name 'AirDroid'
   homepage 'https://www.airdroid.com/'
-  license :closed
 
   app 'AirDroid.app'
 end

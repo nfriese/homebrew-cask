@@ -1,12 +1,18 @@
-cask :v1 => 'flightgear' do
-  version '3.4.0'
-  sha256 '17ac1c274d0256a17229b5cd7c77a44cdaa521e555a474301754e72d17c735cb'
+cask 'flightgear' do
+  version '2017.1.2'
+  sha256 'bd6270404515914c882f8a9c3be9073339d1dd998b7f88220ed15b9fe7d77dea'
 
-  # utwente.nl is the official download host per the vendor homepage
-  url "http://ftp.snt.utwente.nl/pub/software/flightgear/ftp/MacOSX/FlightGear-#{version}.dmg"
+  # sourceforge.net/flightgear was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/flightgear/FlightGear-#{version}.dmg"
+  appcast 'https://sourceforge.net/projects/flightgear/rss',
+          checkpoint: '4a83731f1a473aa983bc3c40b820cc212c5d2429eb39be63e391d57909790daf'
   name 'FlightGear'
   homepage 'http://www.flightgear.org/'
-  license :gpl
 
   app 'FlightGear.app'
+
+  zap delete: [
+                '/Library/Logs/DiagnosticReports/fgfs*',
+                '~/Library/Application Support/FlightGear',
+              ]
 end

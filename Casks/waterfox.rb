@@ -1,12 +1,11 @@
-cask :v1 => 'waterfox' do
-  version '40.0.2'
-  sha256 '49720ec39019cc7991531677014bbd140062fb72f0d5dbd963f7f14b75da37b6'
+cask 'waterfox' do
+  version '52.0.1'
+  sha256 '895572090b15427ad974fa17238923265700fc30890c5950a27afc85e494f8f8'
 
-  # cloudfront.net is the official download host per the vendor homepage
-  url "https://d1th2p59px32bw.cloudfront.net/releases/osx64/installer/Waterfox%20#{version}%20Setup.dmg"
+  # storage-waterfox.netdna-ssl.com was verified as official when first introduced to the cask
+  url "https://storage-waterfox.netdna-ssl.com/releases/osx64/installer/Waterfox%20#{version.before_comma}%20Setup.dmg"
   name 'Waterfox'
-  homepage 'https://www.waterfoxproject.org'
-  license :oss
+  homepage 'https://www.waterfoxproject.org/'
 
   app 'Waterfox.app'
 end

@@ -1,12 +1,11 @@
-cask :v1 => 'quip' do
-  version '4.2'
-  sha256 'b1277eec2ffee0559f80d67840718f7c60e38ae29f9a1faf8a1ca1ffdc86151b'
+cask 'quip' do
+  version '4.7.37'
+  sha256 '28ebb2e6820558cc7f34e07e5f31cfcee1806b42c2235f8e730a9683d0a60430'
 
-  # cloudfront.net is the official download host per the vendor homepage
+  # d2i1pl9gz4hwa7.cloudfront.net was verified as official when first introduced to the cask
   url "https://d2i1pl9gz4hwa7.cloudfront.net/macosx_#{version}.dmg"
   name 'Quip'
   homepage 'https://quip.com/'
-  license :gratis
 
   app 'Quip.app'
 end

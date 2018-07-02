@@ -1,11 +1,12 @@
-cask :v1 => 'coqide' do
-  version '8.4pl5'
-  sha256 'ebcb0ef2b5abd659373b3c039de0abd7712ef6ee7901936d5f7962735a59e135'
+cask 'coqide' do
+  version '8.6'
+  sha256 'abd00fc22b7a99a214d8b6977c982d6be26060d769f79f42d3ddcc8761bb4f49'
 
-  url "https://coq.inria.fr/distrib/V#{version}/files/coqide-#{version}.dmg"
+  url "https://coq.inria.fr/distrib/V#{version}/files/CoqIDE_#{version}.dmg"
+  appcast 'https://coq.inria.fr/rss.xml',
+          checkpoint: '91b6d31b7d6478150b9a4af834bf54314ebff26d1e7152ff7cc548faf2796bfc'
   name 'Coq'
   homepage 'https://coq.inria.fr/'
-  license :oss
 
-  app "CoqIde_#{version}.app"
+  app "CoqIDE_#{version}.app"
 end

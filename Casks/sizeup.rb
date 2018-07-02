@@ -1,17 +1,20 @@
-cask :v1 => 'sizeup' do
-  version :latest
-  sha256 :no_check
+cask 'sizeup' do
+  version '1.7.3'
+  sha256 'ad0e38750b76759528fb38013521f9196a54682143ae30a968ac0e3e0a2827e8'
 
-  url 'https://www.irradiatedsoftware.com/download/SizeUp.zip'
-  appcast 'https://www.irradiatedsoftware.com/updates/profiles/sizeup.php'
+  url "https://www.irradiatedsoftware.com/downloads/SizeUp_#{version}.zip"
+  appcast 'https://www.irradiatedsoftware.com/updates/profiles/sizeup.php',
+          checkpoint: 'a47cefddf4659cd3019836dee16d979915f373ce0069fcecdfddddcaf8e63dcb'
   name 'SizeUp'
   homepage 'https://www.irradiatedsoftware.com/sizeup/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+
+  auto_updates true
+  accessibility_access true
 
   app 'SizeUp.app'
 
-  zap :delete => [
-                  '~/Library/Preferences/com.irradiatedsoftware.SizeUp.plist',
-                  '~/Library/Application Support/SizeUp',
-                 ]
+  zap delete: [
+                '~/Library/Preferences/com.irradiatedsoftware.SizeUp.plist',
+                '~/Library/Application Support/SizeUp',
+              ]
 end

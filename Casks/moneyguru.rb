@@ -1,13 +1,12 @@
-cask :v1 => 'moneyguru' do
-  version '2.9.3'
-  sha256 '5f47715fa02c5fcd6595a733b35b99bd86b3008dff2a566deb692a7abe0b21a6'
+cask 'moneyguru' do
+  version '2.10.2'
+  sha256 '379e3a556e484531315facc7fbea286fd1b3b30dcdb2e5d95cea7d817e8fde1d'
 
-  url "http://download.hardcoded.net/moneyguru_osx_#{version.gsub('.', '_')}.dmg"
+  url "https://download.hardcoded.net/moneyguru_osx_#{version.dots_to_underscores}.dmg"
+  appcast 'https://www.hardcoded.net/updates/moneyguru.appcast',
+          checkpoint: '42cc3e6d1ff4aed7cd2106b6287c1c9111f5438a2d0daf620b80faf8e6e33961'
   name 'moneyGuru'
-  appcast 'http://www.hardcoded.net/updates/moneyguru.appcast',
-          :sha256 => '32714462ad203d85285fd449dd472c609c8445384b579ff0dbac794e27bc8749'
-  homepage 'http://www.hardcoded.net/moneyguru/'
-  license :bsd
+  homepage 'https://www.hardcoded.net/moneyguru/'
 
   app 'moneyGuru.app'
 end

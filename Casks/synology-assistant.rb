@@ -1,13 +1,12 @@
-cask :v1 => 'synology-assistant' do
-  version '5.2-5566'
-  sha256 '8960586857f7fd1fb2cb683f9031b05344440b4c9f8dd5d8a735831d3b541e42'
+cask 'synology-assistant' do
+  version '6.1-15030'
+  sha256 '534ea2de08744fa8ae9a1bac99ffe40219f14d5f6d3df8a207a3032c53a49bbe'
 
-  url "https://global.download.synology.com/download/Tools/Assistant/#{version}/Mac/Synology-Assistant-#{version}.dmg"
+  url "https://global.download.synology.com/download/Tools/Assistant/#{version}/Mac/synology-assistant-#{version}.dmg"
   name 'Synology Assistant'
   homepage 'https://www.synology.com/'
-  license :gratis
 
   app 'Synology Assistant.app'
 
-  zap :delete => '~/Library/Preferences/com.synology.DSAssistant.plist'
+  zap delete: '~/Library/Preferences/com.synology.DSAssistant.plist'
 end

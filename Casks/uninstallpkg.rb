@@ -1,21 +1,20 @@
-cask :v1 => 'uninstallpkg' do
-  version '1.0.19'
-  sha256 '8dd282c2c8b98f83ed7a7799629407443a95e8eef503f7926c3d3b60c8c001f8'
+cask 'uninstallpkg' do
+  version '1.0.27'
+  sha256 'a5e2380519fb51e0cef1ef1eb65f83e5a1259fc9dccfb039af312bc78b5adfc0'
 
-  url "https://www.corecode.at/downloads/uninstallpkg_#{version}.zip"
-  appcast 'https://www.corecode.at/uninstallpkg/uninstallpkg.xml',
-          :sha256 => '4beff1d471fe2195f83af01ce65cab90d24b0fcfa3738eee2d823385d23fdba3'
+  url 'https://www.corecode.io/downloads/uninstallpkg_latest.zip'
+  appcast 'https://www.corecode.io/uninstallpkg/uninstallpkg.xml',
+          checkpoint: '1d76ab401d523c6dafa9adbde5323d9aa4bcae64d1ec6775581b0d82804bf673'
   name 'UninstallPKG'
-  homepage 'https://www.corecode.at/uninstallpkg/'
-  license :freemium
+  homepage 'https://www.corecode.io/uninstallpkg/'
 
   app 'UninstallPKG.app'
 
-  zap :delete => [
-                  '~/Library/Preferences/com.corecode.UninstallPKG.plist',
-                  '~/Library/Application Support/UninstallPKG/',
-                  '~/Library/Saved Application State/com.corecode.UninstallPKG.savedState/',
-                  '/Library/PrivilegedHelperTools/com.corecode.UninstallPKGDeleteHelper',
-                  '/Library/LaunchDaemons/com.corecode.UninstallPKGDeleteHelper.plist'
-                 ]
+  zap delete: [
+                '~/Library/Preferences/com.corecode.UninstallPKG.plist',
+                '~/Library/Application Support/UninstallPKG/',
+                '~/Library/Saved Application State/com.corecode.UninstallPKG.savedState/',
+                '/Library/PrivilegedHelperTools/com.corecode.UninstallPKGDeleteHelper',
+                '/Library/LaunchDaemons/com.corecode.UninstallPKGDeleteHelper.plist',
+              ]
 end

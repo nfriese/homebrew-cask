@@ -1,13 +1,18 @@
-cask :v1 => 'trailer' do
-  version '1.3.10'
-  sha256 '85b6f65683e0a639e170a36b120a821664a37b6fbf011d6c849024bd3383e41f'
+cask 'trailer' do
+  version '1.5.5'
+  sha256 '5af1ed7d576bb79c0b964b0a2b2597286f7a170118512f19cbf0f9ef9227394d'
 
-  url "https://ptsochantaris.github.io/trailer/trailer#{version.delete('.')}.zip"
+  url "https://ptsochantaris.github.io/trailer/trailer#{version.no_dots}.zip"
   appcast 'https://ptsochantaris.github.io/trailer/appcast.xml',
-          :sha256 => 'aaf3f91888b757ec234643a9f45259fd9650a687c6146c723084e7d80979a6a4'
+          checkpoint: '7cf2e300d7276c1b825e4d69c3d1cd925e82575cec89a7035e2ae287488f75cb'
   name 'Trailer'
   homepage 'https://ptsochantaris.github.io/trailer/'
-  license :mit
 
   app 'Trailer.app'
+
+  zap delete: [
+                '~/Library/Application Support/com.housetrip.Trailer',
+                '~/Library/Caches/com.housetrip.Trailer',
+                '~/Library/Preferences/com.housetrip.Trailer.plist',
+              ]
 end

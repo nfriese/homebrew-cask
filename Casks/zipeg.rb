@@ -1,11 +1,10 @@
-cask :v1 => 'zipeg' do
+cask 'zipeg' do
   version :latest
   sha256 :no_check
 
-  url 'https://www.zipeg.net/downloads/zipeg_mac.dmg'
+  url 'http://www.zipeg.com/downloads/zipeg_mac.dmg'
   name 'Zipeg'
-  homepage 'http://www.zipeg.net/'
-  license :gratis
+  homepage 'http://www.zipeg.com/'
 
   app 'Zipeg.app'
 end

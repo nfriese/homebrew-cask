@@ -1,11 +1,10 @@
-cask :v1 => 'xee' do
-  version '3.5.1'
-  sha256 '09d31018db36338049686f6466b12688f16247b4483188f4a396e988b7d6bedd'
+cask 'xee' do
+  version '3.5.2'
+  sha256 '43e22dc738f9c6d08ccea094acfe66fa0bf89fda1cc69dbf8ec6e6c6aceb63b2'
 
   url "http://xee.c3.cx/downloads/Xee#{version}.dmg"
   name 'Xee³'
-  homepage 'http://xee.c3.cx/'
-  license :commercial
+  homepage 'https://xee.c3.cx/'
 
   app 'Xee³.app'
 end

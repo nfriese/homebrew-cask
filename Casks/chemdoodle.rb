@@ -1,11 +1,10 @@
-cask :v1 => 'chemdoodle' do
-  version '6.0.1'
-  sha256 '004c4d828230f4640678ba31ef07bf878e00ef3f225144fa088a81c4279c1776'
+cask 'chemdoodle' do
+  version '8.1.0'
+  sha256 'e65e33724034f996ba5d8ed7a51ecce2e38d1efdc49dfd24d3be180521308e9d'
 
-  url "http://www.chemdoodle.com/downloads/ChemDoodle-osx-#{version}.dmg"
+  url "https://www.chemdoodle.com/downloads/ChemDoodle-osx-#{version}.dmg"
   name 'ChemDoodle'
-  homepage 'http://www.chemdoodle.com'
-  license :commercial
+  homepage 'https://www.chemdoodle.com/'
 
   suite 'ChemDoodle'
 end

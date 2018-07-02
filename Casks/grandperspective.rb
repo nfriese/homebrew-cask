@@ -1,13 +1,14 @@
-cask :v1 => 'grandperspective' do
-  version '1.5.1'
-  sha256 '92204458042a337c1091879e167ea95e45cae33a7be16fa6c11e80572c54d135'
+cask 'grandperspective' do
+  version '1.9.1'
+  sha256 '1750c37590e451278cf2d93a521ff7e56572c417a3afcf3204961f5b0e8b5ceb'
 
-  url "http://downloads.sourceforge.net/project/grandperspectiv/grandperspective/#{version}/GrandPerspective-#{version.gsub('.','_')}.dmg"
+  url "https://downloads.sourceforge.net/grandperspectiv/grandperspective/#{version}/GrandPerspective-#{version.dots_to_underscores}.dmg"
+  appcast 'https://sourceforge.net/projects/grandperspectiv/rss?path=/grandperspective',
+          checkpoint: 'bc448794e57b511c93a061bc25aec699ab09bfc54f618c44bc7ba91e31ab76c6'
   name 'GrandPerspective'
   homepage 'http://grandperspectiv.sourceforge.net/'
-  license :gpl
 
   app 'GrandPerspective.app'
 
-  zap :delete => '~/Library/Preferences/net.sourceforge.grandperspectiv.plist'
+  zap trash: '~/Library/Preferences/net.sourceforge.grandperspectiv.plist'
 end

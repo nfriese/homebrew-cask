@@ -1,31 +1,30 @@
-cask :v1 => 'ivpn' do
-  version '7.3.1'
-  sha256 '85f5e4fb9d09fabf13c08841aa1f35e64d44792b09fd521f49a5281a675d17f5'
+cask 'ivpn' do
+  version '7.4.3'
+  sha256 '4c8ed0b22e13ae23c0afd1307c690d9bb60011b5336c6b1eb5a2a42371f3b7e0'
 
-  url "http://macserve.org.uk/downloads/ivpn/iVPN_#{version}.zip"
+  url "https://macserve.org.uk/downloads/ivpn/iVPN_#{version}.zip"
   appcast 'http://macserve.org.uk:8090/profileInfo.php',
-          :sha256 => '6a4c9162b1b516b99e274b6c5cb2760a1b615de163395e639280639a785e0315'
+          checkpoint: 'ef5a831947d62a9c82baa03e50e1044ef065f4bc80e30fd35c543f0eb6087414'
   name 'iVPN'
-  homepage 'http://macserve.org.uk/projects/ivpn/'
-  license :commercial
+  homepage 'https://macserve.org.uk/'
 
   app 'iVPN.app'
 
-  uninstall :quit      => [
-                            'com.MacServe.iVPN',
-                            'com.MacServe.iVPN-Monitor'
-                          ],
-            :launchctl => [
-                           'com.MacServe.ivpnHelper',
-                           'com.macserve.ivpn',
-                           'com.macserve.ppp.l2tp',
-                           'com.macserve.ppp.pptp'
-                          ]
+  uninstall quit:      [
+                         'com.MacServe.iVPN',
+                         'com.MacServe.iVPN-Monitor',
+                       ],
+            launchctl: [
+                         'com.MacServe.ivpnHelper',
+                         'com.macserve.ivpn',
+                         'com.macserve.ppp.l2tp',
+                         'com.macserve.ppp.pptp',
+                       ]
 
-  zap       :delete    => [
-                           '~/Library/Preferences/com.MacServe.iVPN.plist',
-                           '/Library/LaunchDaemons/com.macserve.ppp.l2tp.plist',
-                           '/Library/LaunchDaemons/com.macserve.ppp.pptp.plist',
-                           '/private/etc/ppp/'
-                          ]
+  zap       delete: [
+                      '~/Library/Preferences/com.MacServe.iVPN.plist',
+                      '/Library/LaunchDaemons/com.macserve.ppp.l2tp.plist',
+                      '/Library/LaunchDaemons/com.macserve.ppp.pptp.plist',
+                      '/private/etc/ppp/',
+                    ]
 end

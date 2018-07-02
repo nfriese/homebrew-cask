@@ -1,19 +1,18 @@
-cask :v1 => 'acquia-dev-desktop' do
-  version '2-2015-07-27'
-  sha256 '0d0f750912157d25220d6d09cb3175e6bfcaf8cd3b412fcf7621ec516951de42'
+cask 'acquia-dev-desktop' do
+  version '2-2017-02-01'
+  sha256 'b6f3af47241028b28d32ab494887095a51bacd7b766f4e3181993ecc2948febc'
 
-  url "http://www.acquia.com/sites/default/files/downloads/dev-desktop/AcquiaDevDesktop-#{version}.dmg"
+  url "https://www.acquia.com/sites/default/files/downloads/dev-desktop/AcquiaDevDesktop-#{version}.dmg"
   name 'Acquia Dev Desktop'
   homepage 'https://www.acquia.com/products-services/dev-desktop'
-  license :gratis
 
-  installer :script => 'Acquia Dev Desktop Installer.app/Contents/MacOS/installbuilder.sh',
-            :args => ['--mode', 'unattended', '--unattendedmodeui', 'none'],
-            :sudo => true
+  installer script: 'Acquia Dev Desktop Installer.app/Contents/MacOS/installbuilder.sh',
+            args:   ['--mode', 'unattended', '--unattendedmodeui', 'none'],
+            sudo:   true
 
-  uninstall :script => {
-                        :executable => '/Applications/DevDesktop/uninstall.app/Contents/MacOS/installbuilder.sh',
-                        :args => ['--mode', 'unattended', '--unattendedmodeui', 'none'],
-                        :sudo => true,
-                       }
+  uninstall script: {
+                      executable: '/Applications/DevDesktop/uninstall.app/Contents/MacOS/installbuilder.sh',
+                      args:       ['--mode', 'unattended', '--unattendedmodeui', 'none'],
+                      sudo:       true,
+                    }
 end

@@ -1,14 +1,13 @@
-cask :v1 => 'eve' do
-  version :latest
-  sha256 :no_check
+cask 'eve' do
+  version '1.5.0'
+  sha256 '1d27a231ef6fc9eeefd870797f539e87f19b806600d3e1b8e652bb090483267e'
 
-  # amazonaws.com is the official download host per the vendor homepage
+  # amazonaws.com/hotkeyeve was verified as official when first introduced to the cask
   url 'https://s3.amazonaws.com/hotkeyeve/Downloads/EVE-latest.zip'
-  name 'EVE'
   appcast 'https://s3.amazonaws.com/hotkeyeve/hotkeyEVEappcast.xml',
-          :sha256 => '771a6b166a2752502899a4c5117b08aae56b36a72122a34dbb304ab7d7c8b0e5'
+          checkpoint: 'e9ec5e3e38ebb8c634bb750a6a41de8267c2f12adaf7ee3e29eb8d47be8f79ae'
+  name 'EVE'
   homepage 'http://www.hotkey-eve.com/'
-  license :gratis
 
   app 'EVE.app'
 end

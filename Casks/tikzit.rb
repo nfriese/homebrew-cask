@@ -1,14 +1,12 @@
-cask :v1 => 'tikzit' do
-  version '0.8'
-  sha256 '6e2721d2b46d16219a0c7abc92c3abfb8a924d8413ac53fde9d10a7465f1559e'
+cask 'tikzit' do
+  version '1.1'
+  sha256 '7e00a64fe5c96963ae5b09f1f59698b8b487239c53eed01a3bf012cf024f0686'
 
-  url "http://downloads.sourceforge.net/sourceforge/tikzit/TikZiT-#{version}.dmg"
-
-  name 'TikZiT'
+  url "https://downloads.sourceforge.net/tikzit/TikZiT-osx-#{version}.zip"
   appcast 'http://tikzit.sourceforge.net/appcast/tikzit.xml',
-          :sha256 => '68a09aa0e3f82a9cd88092ee5a76535fe1928967f03ea5212ec05e63fffb65d3'
+          checkpoint: '906cd45032179999523b58eb97a293bf63674ba2193b7932ea3930655e8e1516'
+  name 'TikZiT'
   homepage 'http://tikzit.sourceforge.net/'
-  license :gpl
 
   app 'TikZiT.app'
 end

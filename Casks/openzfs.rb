@@ -1,22 +1,24 @@
-cask :v1 => 'openzfs' do
-  version '1.4.5'
-  sha256 '9ad0b21bc54c5453a90427d478533f530ff9bb98744d17f2fcb127a81af18169'
+cask 'openzfs' do
+  version '1.6.1,f8'
+  sha256 '126ce9215ec060b2eb60db0609b29acad334f0d1c30c5ef2ab97cb251f374c39'
 
-  url "https://openzfsonosx.org/w/images/9/9f/OpenZFS_on_OS_X_#{version}.dmg"
+  url "https://openzfsonosx.org/w/images/#{version.after_comma[0]}/#{version.after_comma}/OpenZFS_on_OS_X_#{version.before_comma}.dmg"
   name 'OpenZFS on OS X'
-  homepage 'https://openzfsonosx.org'
-  license :oss
+  homepage 'https://openzfsonosx.org/'
 
-  # OpenZFS on OSX has no version below Mountain Lion.
-  if MacOS.release == :mountain_lion
-    pkg "OpenZFS on OS X #{version.sub(%r{-.*},'')} Mountain Lion.pkg"
-  elsif MacOS.release == :mavericks
-    pkg "OpenZFS on OS X #{version.sub(%r{-.*},'')} Mavericks.pkg"
-  elsif MacOS.release == :yosemite
-    pkg "OpenZFS on OS X #{version.sub(%r{-.*},'')} Yosemite.pkg"
-  elsif MacOS.release >= :el_capitan
-    pkg "OpenZFS on OS X #{version.sub(%r{-.*},'')} El Capitan or higher.pkg"
+  depends_on macos: '>= :mountain_lion'
+
+  if MacOS.version == :mountain_lion
+    pkg "OpenZFS on OS X #{version.before_comma} Mountain Lion.pkg"
+  elsif MacOS.version == :mavericks
+    pkg "OpenZFS on OS X #{version.before_comma} Mavericks.pkg"
+  elsif MacOS.version == :yosemite
+    pkg "OpenZFS on OS X #{version.before_comma} Yosemite.pkg"
+  elsif MacOS.version == :el_capitan
+    pkg "OpenZFS on OS X #{version.before_comma} El Capitan.pkg"
+  elsif MacOS.version >= :sierra
+    pkg "OpenZFS on OS X #{version.before_comma} Sierra.pkg"
   end
 
-  uninstall :pkgutil => 'net.lundman.openzfs.*'
+  uninstall pkgutil: 'net.lundman.openzfs.*'
 end

@@ -1,21 +1,26 @@
-cask :v1 => 'appcode' do
-  version '3.3'
-  sha256 '4d434684415479fe4a77f504910d214298959162ba532c910278b77915c24388'
+cask 'appcode' do
+  version '2017.1,171.3890.9'
+  sha256 '2bc10b2797bba2816c441accbfb6c340d329e2d8fcdd59320f24b73feb14f7cc'
 
-  url "https://download.jetbrains.com/objc/AppCode-#{version}-custom-jdk-bundled.dmg"
+  url "https://download.jetbrains.com/objc/AppCode-#{version.before_comma}.dmg"
+  appcast 'https://data.services.jetbrains.com/products/releases?code=AC&latest=true&type=release',
+          checkpoint: '034ee84690173bdd06c240bdf5ee8e7f768b25f342c55213841b9b9c2b8e313d'
   name 'AppCode'
   homepage 'https://www.jetbrains.com/objc/'
-  license :commercial
+
+  auto_updates true
+  conflicts_with cask: 'appcode-eap'
 
   app 'AppCode.app'
 
-  zap :delete => [
-                  '~/Library/Preferences/com.jetbrains.AppCode.plist',
-                  '~/Library/Preferences/AppCode33',
-                  '~/Library/Application Support/AppCode33',
-                  '~/Library/Caches/AppCode33',
-                  '~/Library/Logs/AppCode33',
-                 ]
+  uninstall_postflight do
+    ENV['PATH'].split(File::PATH_SEPARATOR).map { |path| File.join(path, 'appcode') }.each { |path| File.delete(path) if File.exist?(path) }
+  end
 
-  conflicts_with :cask => 'appcode-eap'
+  zap delete: [
+                "~/Library/Preferences/AppCode#{version.major_minor}",
+                "~/Library/Application Support/AppCode#{version.major_minor}",
+                "~/Library/Caches/AppCode#{version.major_minor}",
+                "~/Library/Logs/AppCode#{version.major_minor}",
+              ]
 end

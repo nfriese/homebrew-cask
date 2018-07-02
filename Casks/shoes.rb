@@ -1,12 +1,13 @@
-cask :v1 => 'shoes' do
-  version '3.2.25'
-  sha256 'd466803c01640a220c50d28db6d08e8bb1c012e0363badc13c2b488438e1568c'
+cask 'shoes' do
+  version '3.3.2'
+  sha256 'f88ee4af6194aec25b322ca64b24c992cf00234dce37a92312dc31ce77aef232'
 
-  # mvmanila.com is the official download host per the vendor homepage
-  url "http://shoes.mvmanila.com/public/shoes/shoes-#{version}-osx-10.9.tgz"
+  # shoes.mvmanila.com/public/shoes was verified as official when first introduced to the cask
+  url "https://shoes.mvmanila.com/public/shoes/shoes-#{version}-osx-10.9.tgz"
+  appcast 'http://shoesrb.com/downloads/',
+          checkpoint: 'abf17e6d182e8d4506fed1a4ffc2f2f88430f217f5177065f497b8314a3a0755'
   name 'Shoes'
   homepage 'http://shoesrb.com/'
-  license :oss
 
   app 'Shoes.app'
 end

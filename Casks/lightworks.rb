@@ -1,13 +1,12 @@
-cask :v1 => 'lightworks' do
-  version '12.5.0'
-  sha256 '579a953a975de6b0c7b8c3608286576b835288444f14b06a08297f94602cd317'
+cask 'lightworks' do
+  version '12.6.0.1'
+  sha256 '1d1c9745e5c886aecf7729281e73b8fb280ad31b1773bc5c0a4b7000fbd1dbc0'
 
-  url "https://www.lwks.com/dmpub/lightworks_v#{version}.dmg"
+  url "http://downloads.lwks.com/lightworks_v#{version}.dmg"
   name 'Lightworks'
-  homepage 'https://www.lwks.com'
-  license :freemium
+  homepage 'https://www.lwks.com/'
+
+  depends_on macos: '>= :mountain_lion'
 
   app 'Lightworks.app'
-
-  depends_on :macos => '>= 10.8'
 end

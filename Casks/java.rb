@@ -1,70 +1,83 @@
-cask :v1 => 'java' do
-  version '1.8.0_66-b17'
-  sha256 'cd416de4f41f9f0a6984c456481437681674a717da62259740c54732f174fa08'
+cask 'java' do
+  version '1.8.0_121-b13,e9e7ea248e2c4826b92b3f075a80e441'
+  sha256 '82ff2493cd4b9ebdaeb9135abaffc9a37b71d341b007a83f73aa6ff3df1b6a3a'
 
-  url "http://download.oracle.com/otn-pub/java/jdk/#{version.sub(%r{^\d+\.(\d+).*?_(.*)$},'\1u\2')}/jdk-#{version.sub(%r{^\d+\.(\d+).*?_(\d+)-.*$},'\1u\2')}-macosx-x64.dmg",
-      :cookies => {
-                    'oraclelicense' => 'accept-securebackup-cookie'
-                  }
-  name 'Java'
+  java_update = version.sub(%r{.*_(\d+)-.*}, '\1')
+  url "http://download.oracle.com/otn-pub/java/jdk/#{version.minor}u#{version.before_comma.split('_').last}/#{version.after_comma}/jdk-#{version.minor}u#{java_update}-macosx-x64.dmg",
+      cookies: {
+                 'oraclelicense' => 'accept-securebackup-cookie',
+               }
   name 'Java Standard Edition Development Kit'
-  homepage "http://www.oracle.com/technetwork/java/javase/downloads/jdk#{version.split('.')[1]}-downloads-2133151.html"
-  license :gratis
+  homepage "https://www.oracle.com/technetwork/java/javase/downloads/jdk#{version.minor}-downloads-2133151.html"
 
-  pkg "JDK #{version.split('.')[1]} Update #{version.sub(%r{^.*?_(\d+)-.*$},'\1')}.pkg"
+  auto_updates true
+
+  pkg "JDK #{version.minor} Update #{java_update}.pkg"
+
   postflight do
-    system '/usr/bin/sudo', '-E', '--',
-      '/usr/libexec/PlistBuddy', '-c', 'Add :JavaVM:JVMCapabilities: string BundledApp', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Info.plist"
-    system '/usr/bin/sudo', '-E', '--',
-      '/usr/libexec/PlistBuddy', '-c', 'Add :JavaVM:JVMCapabilities: string JNI',        "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Info.plist"
-    system '/usr/bin/sudo', '-E', '--',
-      '/usr/libexec/PlistBuddy', '-c', 'Add :JavaVM:JVMCapabilities: string WebStart',   "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Info.plist"
-    system '/usr/bin/sudo', '-E', '--',
-      '/usr/libexec/PlistBuddy', '-c', 'Add :JavaVM:JVMCapabilities: string Applets',    "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Info.plist"
-    system '/usr/bin/sudo', '-E', '--',
-      '/bin/ln', '-nsf', '--', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Home", '/Library/Java/Home'
-    system '/usr/bin/sudo', '-E', '--',
-      '/bin/mkdir', '-p', '--', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Home/bundle/Libraries"
-    system '/usr/bin/sudo', '-E', '--',
-      '/bin/ln', '-nsf', '--', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Home/jre/lib/server/libjvm.dylib", "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Home/bundle/Libraries/libserver.dylib"
-    if MacOS.release <= :mavericks
-      system '/usr/bin/sudo', '-E', '--',
-        '/bin/rm', '-rf', '--', '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK'
-      system '/usr/bin/sudo', '-E', '--',
-        '/bin/ln', '-nsf', '--', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents", '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK'
+    system_command '/usr/libexec/PlistBuddy',
+                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string BundledApp', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Info.plist"],
+                   sudo: true
+    system_command '/usr/libexec/PlistBuddy',
+                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string JNI', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Info.plist"],
+                   sudo: true
+    system_command '/usr/libexec/PlistBuddy',
+                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string WebStart', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Info.plist"],
+                   sudo: true
+    system_command '/usr/libexec/PlistBuddy',
+                   args: ['-c', 'Add :JavaVM:JVMCapabilities: string Applets', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Info.plist"],
+                   sudo: true
+    system_command '/bin/ln',
+                   args: ['-nsf', '--', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Home", '/Library/Java/Home'],
+                   sudo: true
+    system_command '/bin/mkdir',
+                   args: ['-p', '--', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Home/bundle/Libraries"],
+                   sudo: true
+    system_command '/bin/ln',
+                   args: ['-nsf', '--', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Home/jre/lib/server/libjvm.dylib", "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents/Home/bundle/Libraries/libserver.dylib"],
+                   sudo: true
+
+    if MacOS.version <= :mavericks
+      system_command '/bin/rm',
+                     args: ['-rf', '--', '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK'],
+                     sudo: true
+      system_command '/bin/ln',
+                     args: ['-nsf', '--', "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents", '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK'],
+                     sudo: true
     end
   end
 
-  uninstall :pkgutil => [
-                         "com.oracle.jdk#{version.sub(%r{^\d+\.(\d+).*?_(\d+)-.*$},'\1u\2')}",
+  uninstall pkgutil:   [
+                         "com.oracle.jdk#{version.minor}u#{java_update}",
                          'com.oracle.jre',
-                        ],
-            :launchctl => [
-                           'com.oracle.java.Helper-Tool',
-                           'com.oracle.java.Java-Updater',
-                          ],
-            :quit => [
-                      'com.oracle.java.Java-Updater',
-                      'net.java.openjdk.cmd',         # Java Control Panel
-                     ],
-            :delete => [
-                        '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin',
-                        "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents",
-                        '/Library/PreferencePanes/JavaControlPanel.prefPane',
-                        '/Library/Java/Home',
-                        if MacOS.release <= :mavericks
-                          [
-                           '/usr/lib/java/libjdns_sd.jnilib',
-                           '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK'
-                          ]
-                        end
-                       ].keep_if { |v| !v.nil? }
-  zap       :delete => [
-                        '~/Library/Application Support/Oracle/Java',
-                        '~/Library/Caches/com.oracle.java.Java-Updater',
-                        '~/Library/Caches/net.java.openjdk.cmd',
                        ],
-            :rmdir  => '~/Library/Application Support/Oracle/'
+            launchctl: [
+                         'com.oracle.java.Helper-Tool',
+                         'com.oracle.java.Java-Updater',
+                       ],
+            quit:      [
+                         'com.oracle.java.Java-Updater',
+                         'net.java.openjdk.cmd', # Java Control Panel
+                       ],
+            delete:    [
+                         '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin',
+                         "/Library/Java/JavaVirtualMachines/jdk#{version.split('-')[0]}.jdk/Contents",
+                         '/Library/PreferencePanes/JavaControlPanel.prefPane',
+                         '/Library/Java/Home',
+                         if MacOS.version <= :mavericks
+                           [
+                             '/usr/lib/java/libjdns_sd.jnilib',
+                             '/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK',
+                           ]
+                         end,
+                       ].keep_if { |v| !v.nil? }
+
+  zap       delete: [
+                      '~/Library/Application Support/Oracle/Java',
+                      '~/Library/Caches/com.oracle.java.Java-Updater',
+                      '~/Library/Caches/net.java.openjdk.cmd',
+                    ],
+            rmdir:  '~/Library/Application Support/Oracle/'
 
   caveats <<-EOS.undent
     This Cask makes minor modifications to the JRE to prevent issues with
@@ -78,6 +91,6 @@ cask :v1 => 'java' do
     Installing this Cask means you have AGREED to the Oracle Binary Code
     License Agreement for Java SE at
 
-      http://www.oracle.com/technetwork/java/javase/terms/license/index.html
+      https://www.oracle.com/technetwork/java/javase/terms/license/index.html
   EOS
 end

@@ -1,15 +1,16 @@
-cask :v1 => 'trezor-bridge' do
-  version '1.1.2'
-  sha256 '95780f24cd7a4a6a30a3f715502ad436f036571b38e693edd88d347abc4348ab'
+cask 'trezor-bridge' do
+  version '1.2.0'
+  sha256 'be5b39d77e142ba87dab75fd7c0c8840fb69ad47acad4ace1acc8f66ff777ec5'
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://mytrezor.s3.amazonaws.com/bridge/#{version}/trezor-bridge-#{version}.pkg"
+  # wallet.mytrezor.com/data/bridge was verified as official when first introduced to the cask
+  url "https://wallet.mytrezor.com/data/bridge/#{version}/trezor-bridge-#{version}.pkg"
+  appcast 'https://wallet.mytrezor.com/data/bridge/latest.txt',
+          checkpoint: '1e5b51cde515396a9fa762909cf8ca6584ccc564b325d2eebeea76175fe95c4d'
   name 'TREZOR Bridge'
-  homepage 'https://mytrezor.com/'
-  license :gratis
+  homepage 'https://wallet.trezor.io/'
 
   pkg "trezor-bridge-#{version}.pkg"
 
-  uninstall :pkgutil   => 'com.bitcointrezor.pkg.TREZORBridge',
-            :launchctl => 'com.bitcointrezor.trezorBridge.trezord'
+  uninstall pkgutil:   'com.bitcointrezor.pkg.TREZORBridge',
+            launchctl: 'com.bitcointrezor.trezorBridge.trezord'
 end

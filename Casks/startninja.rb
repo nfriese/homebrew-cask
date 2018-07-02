@@ -1,11 +1,11 @@
-cask :v1 => 'startninja' do
+cask 'startninja' do
   version :latest
   sha256 :no_check
 
-  url 'http://www.allvu.com/downloads/StartNinjaInstaller.dmg'
+  # cdn.macupdate.com/prod/ was verified as official when first introduced to the cask
+  url 'http://cdn.macupdate.com/prod/StartNinjaInstaller.dmg'
   name 'StartNinja'
-  homepage 'http://www.allvu.com/index.php/products/startninja.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  homepage 'http://www.allvu.com/startninja.html'
 
   app 'StartNinja.app'
 end

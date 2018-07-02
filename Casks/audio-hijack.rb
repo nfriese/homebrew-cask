@@ -1,15 +1,20 @@
-cask :v1 => 'audio-hijack' do
-  version :latest
-  sha256 :no_check
+cask 'audio-hijack' do
+  version '3.3.2'
+  sha256 '7339455831699d5c7b55f0bee2445c2a63c4c6f29e70791b384215a283f98a4b'
 
   url 'https://rogueamoeba.com/audiohijack/download/AudioHijack.zip'
+  appcast "https://www.rogueamoeba.net/ping/versionCheck.cgi?format=sparkle&bundleid=com.rogueamoeba.audiohijack#{version.major}",
+          checkpoint: '6c8bca6747961bfd604191d57047623ed8162f4418b049919b11a83067e68719'
   name 'Audio Hijack'
-  appcast 'https://www.rogueamoeba.net/ping/versionCheck.cgi?format=sparkle&bundleid=com.rogueamoeba.audiohijack3',
-          :sha256 => '50ff37091962a7b91773d2ef82c012d9a136775a4f40482f2bc8b42e27186f5b'
   homepage 'https://www.rogueamoeba.com/audiohijack/'
-  license :commercial
+
+  depends_on macos: '>= :mavericks'
 
   app 'Audio Hijack.app'
 
-  depends_on :macos => '>= :mavericks'
+  zap delete: [
+                "~/Library/Preferences/com.rogueamoeba.audiohijack#{version.major}.plist",
+                '~/Library/Application Support/Audio Hijack',
+                '~/Music/Audio Hijack',
+              ]
 end

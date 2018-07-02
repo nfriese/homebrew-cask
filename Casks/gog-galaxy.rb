@@ -1,17 +1,15 @@
-cask :v1 => 'gog-galaxy' do
-  version '1.1.5.27'
-  sha256 '8dd609a4aa7b9174f3083d83888e5d9016d2874fa05bf6b5b904c4cce1bd74f3'
+cask 'gog-galaxy' do
+  version '1.1.27.1'
+  sha256 'bb7bc4b210f6ab2d22fdb6c2c49f1ad1d41a46cace36369aa8e7762d463e6460'
 
-  url "http://cdn.gog.com/open/galaxy/client/galaxy_client_#{version}.pkg"
+  url "https://cdn.gog.com/open/galaxy/client/galaxy_client_#{version}.pkg"
   name 'GOG Galaxy Client'
   homepage 'https://www.gog.com/galaxy'
-  license :gratis
-  tags :vendor => 'GOG'
+
+  depends_on macos: '>= :mountain_lion'
 
   pkg "galaxy_client_#{version}.pkg"
 
-  uninstall :pkgutil => "com.gog.galaxy.galaxy_client_#{version}.pkg",
-            :delete => '/Applications/GalaxyClient.app'
-
-  depends_on :macos => '>= :mountain_lion'
+  uninstall pkgutil: "com.gog.galaxy.galaxy_client_#{version}.pkg",
+            delete:  '/Applications/GalaxyClient.app'
 end

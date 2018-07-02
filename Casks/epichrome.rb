@@ -1,12 +1,12 @@
-cask :v1 => 'epichrome' do
-  version '2.1.6'
-  sha256 '136f9cc1289510a33b572161bddf1ec3b1f1a7344e60bde3700bd208b6beaa3e'
+cask 'epichrome' do
+  version '2.1.16'
+  sha256 '244b3e77aef4d8c772753515917c508c7f46e2ddd01531a04def11e259727eae'
 
   url "https://github.com/dmarmor/epichrome/releases/download/v#{version}/epichrome-#{version}.dmg"
-  appcast 'https://github.com/dmarmor/epichrome/releases.atom'
+  appcast 'https://github.com/dmarmor/epichrome/releases.atom',
+          checkpoint: '7d06767fb9e238d2413fac857456c8d530423b6149f2f901abe2b2d2813a2866'
   name 'Epichrome'
   homepage 'https://github.com/dmarmor/epichrome'
-  license :gpl
 
   app 'Epichrome.app'
 end

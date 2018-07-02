@@ -1,13 +1,14 @@
-cask :v1 => 'flycut' do
-  version '1.5'
-  sha256 '0a0d3d91194ba8f4e53a9ad004452cb7b0bc5541322f849a203a75720f875908'
+cask 'flycut' do
+  version '1.8.2'
+  sha256 '70e40de3fed82035bd16979bc4d99fda3588888720694fe6cd4e7f367a9004ba'
 
-  url "https://github.com/downloads/TermiT/Flycut/flycut#{version}.pkg"
+  url "https://github.com/TermiT/Flycut/releases/download/#{version}/Flycut.app.#{version}.zip"
+  appcast 'https://github.com/TermiT/Flycut/releases.atom',
+          checkpoint: '1cb31799329d090ccf363ba982998f099eefe915826eae38e62aa5951da6d974'
   name 'Flycut'
   homepage 'https://github.com/TermiT/Flycut'
-  license :mit
 
-  pkg "flycut#{version}.pkg", :allow_untrusted => true
+  app 'Flycut.app'
 
-  uninstall :pkgutil => 'com.generalarcade.flycut'
+  zap delete: '~/Library/Preferences/com.generalarcade.flycut.plist'
 end

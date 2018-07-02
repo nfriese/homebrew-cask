@@ -1,11 +1,10 @@
-cask :v1 => 'coolterm' do
+cask 'coolterm' do
   version :latest
   sha256 :no_check
 
-  url 'http://freeware.the-meiers.org/CoolTerm_Mac.zip'
+  url 'https://freeware.the-meiers.org/CoolTermMac.zip'
   name 'CoolTerm'
-  homepage 'http://freeware.the-meiers.org/'
-  license :gratis
+  homepage 'https://freeware.the-meiers.org/'
 
-  app 'CoolTermMac/CoolTerm.app'
+  app 'CoolTerm.app'
 end

@@ -1,11 +1,11 @@
-cask :v1 => 'deep-dreamer' do
+cask 'deep-dreamer' do
   version :latest
   sha256 :no_check
 
-  url 'http://dl.devmate.com/com.realmacsoftware.deepdreamer/DeepDreamer.zip'
+  # devmate.com/com.realmacsoftware.deepdreamer was verified as official when first introduced to the cask
+  url 'https://dl.devmate.com/com.realmacsoftware.deepdreamer/DeepDreamer.zip'
   name 'Deep Dreamer'
-  homepage 'http://realmacsoftware.com/deepdreamer'
-  license :commercial
+  homepage 'https://www.realmacsoftware.com/deepdreamer'
 
   app 'Deep Dreamer.app'
 end
